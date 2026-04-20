@@ -1,5 +1,5 @@
 import NewsletterForm from "../../components/NewsletterForm";
-import ReceptCard from "../../components/ReceptCard";
+import FilteredPosts from "../../components/FilteredPosts";
 import { getPosts } from "../../lib/notion";
 
 export const metadata = {
@@ -9,7 +9,6 @@ export const metadata = {
 
 export default async function BlogPage() {
   const posts = await getPosts();
-  const [featured, ...rest] = posts;
 
   return (
     <div className="max-w-5xl mx-auto px-6">
@@ -26,16 +25,7 @@ export default async function BlogPage() {
         </p>
       </section>
 
-      <section className="pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="md:col-span-2">
-            <ReceptCard post={featured} wide />
-          </div>
-          {rest.map((post) => (
-            <ReceptCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </section>
+      <FilteredPosts posts={posts} />
 
       <section className="pb-24">
         <NewsletterForm />
