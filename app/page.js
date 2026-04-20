@@ -13,10 +13,8 @@ export default async function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-6">
 
-      {/* Hero */}
+      {/* ── Hero (full-width) ──────────────────────────────────── */}
       <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 overflow-hidden">
-
-        {/* SVG illustration — achtergrond, rechts uitlopend */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute right-0 top-0 bottom-0 w-[420px] hidden md:block"
@@ -28,8 +26,6 @@ export default async function HomePage() {
         >
           <HeroIllustration />
         </div>
-
-        {/* Text */}
         <div className="relative z-10 max-w-xl">
           <p className="text-xs font-semibold tracking-widest uppercase mb-5"
             style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
@@ -41,7 +37,9 @@ export default async function HomePage() {
           </h1>
           <p className="text-base md:text-lg leading-relaxed mb-4"
             style={{ color: "#6C7B8B" }}>
-            Gedreven door mijn passie voor AI help ik je om slimme technologie tastbaar te maken in je dagelijks leven. Geen ingewikkelde theorie, maar praktische <strong style={{ color: "#2C5A85", fontWeight: 600 }}>AI-fixes</strong> die direct voor je werken.
+            Gedreven door mijn passie voor AI help ik je om slimme technologie tastbaar te maken in je dagelijks leven. Geen ingewikkelde theorie, maar praktische{" "}
+            <strong style={{ color: "#2C5A85", fontWeight: 600 }}>AI-fixes</strong>{" "}
+            die direct voor je werken.
           </p>
           <div className="flex flex-col sm:flex-row items-start gap-3 mt-8">
             <Link href="/blog"
@@ -53,11 +51,10 @@ export default async function HomePage() {
               Nieuwsbrief ontvangen
             </Link>
           </div>
-
         </div>
       </section>
 
-      {/* Drie pijlers */}
+      {/* ── Drie pijlers (full-width) ─────────────────────────── */}
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-20">
         {[
           {
@@ -89,40 +86,53 @@ export default async function HomePage() {
         ))}
       </section>
 
-      {/* Uitgelicht AI-Fix */}
-      <section className="pb-16">
-        <p className="text-xs font-semibold tracking-widest uppercase mb-8"
-          style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-          Uitgelicht
-        </p>
-        <ReceptCard post={featured} wide />
-      </section>
+      {/* ── Grid: hoofd + sidebar ─────────────────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 items-start">
 
-      {/* Top 5 meest gewaardeerd */}
-      <HomepageTopFixes />
+        {/* Hoofdinhoud */}
+        <div>
+          {/* Uitgelicht */}
+          <section className="pb-16">
+            <p className="text-xs font-semibold tracking-widest uppercase mb-8"
+              style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+              Uitgelicht
+            </p>
+            <ReceptCard post={featured} wide />
+          </section>
 
-      {/* Nieuwste AI-Fixes */}
-      <section className="pb-20">
-        <div className="flex items-center justify-between mb-8">
-          <p className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-            Nieuwste AI-Fixes
-          </p>
-          <Link href="/blog" className="text-sm transition-colors" style={{ color: "#6C7B8B" }}>
-            Alle AI-Fixes →
-          </Link>
+          {/* Nieuwste AI-Fixes */}
+          <section className="pb-20">
+            <div className="flex items-center justify-between mb-8">
+              <p className="text-xs font-semibold tracking-widest uppercase"
+                style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+                Nieuwste AI-Fixes
+              </p>
+              <Link href="/blog" className="text-sm transition-colors" style={{ color: "#6C7B8B" }}>
+                Alle AI-Fixes →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {recent.map((post) => (
+                <ReceptCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </section>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {recent.map((post) => (
-            <ReceptCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </section>
 
-      {/* Nieuwsbrief */}
-      <section className="pb-24">
+        {/* Sidebar: Top 5 (sticky) */}
+        <div className="hidden lg:block">
+          <div className="sticky top-8">
+            <HomepageTopFixes />
+          </div>
+        </div>
+
+      </div>
+
+      {/* ── Nieuwsbrief (full-width) ──────────────────────────── */}
+      <section id="nieuwsbrief" className="pb-24">
         <NewsletterForm />
       </section>
+
     </div>
   );
 }
