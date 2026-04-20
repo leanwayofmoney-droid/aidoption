@@ -3,7 +3,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPostBySlug, posts } from "../../../lib/posts";
 import NewsletterForm from "../../../components/NewsletterForm";
-import Codeboek from "../../../components/Codeboek";
 import WinstSlider from "../../../components/WinstSlider";
 import ReceptCard from "../../../components/ReceptCard";
 
@@ -139,9 +138,31 @@ export default function AIFixPage({ params }) {
           </div>
         </section>
 
-        {/* Codeboek */}
-        <section className="pt-2 pb-8" style={{ borderTop: "1px solid #E2E6EA" }}>
-          <Codeboek prompt={post.prompt} tip={post.promptTip} />
+        {/* Het Codeboek — teaser */}
+        <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
+          <p className="text-xs font-semibold tracking-widest uppercase mb-5"
+            style={{ color: c, letterSpacing: "0.16em" }}>
+            Het Codeboek
+          </p>
+          <div className="rounded-xl p-6" style={{ backgroundColor: "#1E2D3D" }}>
+            <p className="text-sm font-medium mb-1" style={{ color: "#9BBCD8" }}>
+              De exacte prompt
+            </p>
+            <p className="text-base font-semibold mb-4" style={{ color: "#FFFFFF" }}>
+              Klaar om te kopiëren en plakken
+            </p>
+            <p className="text-sm leading-relaxed mb-5" style={{ color: "#6C7B8B" }}>
+              De volledige prompt die ik gebruik staat in Het Codeboek — inclusief de exacte instructies, variabelen en tips voor betere output. Schrijf je in voor de nieuwsbrief en ontvang hem direct.
+            </p>
+            <a href="#nieuwsbrief"
+              className="inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-full transition-colors"
+              style={{ backgroundColor: "#2C5A85", color: "#FFFFFF" }}>
+              Ontvang Het Codeboek
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
         </section>
 
         {/* Blok 5: De Nuance */}
