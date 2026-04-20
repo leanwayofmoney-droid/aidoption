@@ -17,6 +17,25 @@ export async function generateMetadata({ params }) {
   return { title: `${post.title} — AIdoption`, description: post.excerpt };
 }
 
+// Verwerk **vet** markers naar <strong>
+function renderBold(text) {
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return parts.map((part, i) =>
+    i % 2 === 1
+      ? <strong key={i} style={{ color: "#1E2D3D" }}>{part}</strong>
+      : part
+  );
+}
+
+// Splits op lege regels en render alinea's
+function renderParagraphs(text, color = "#4A5568") {
+  return text.split("\n\n").map((para, i) => (
+    <p key={i} className="text-base leading-relaxed mb-4 last:mb-0" style={{ color }}>
+      {renderBold(para)}
+    </p>
+  ));
+}
+
 export default function AIFixPage({ params }) {
   const post = getPostBySlug(params.slug);
   if (!post) notFound();
@@ -75,62 +94,82 @@ export default function AIFixPage({ params }) {
           </div>
         </header>
 
-        {/* Invalshoek */}
-        <section className="pt-10 pb-6">
+        {/* Blok 1: Curiosity Header */}
+        <section className="pt-10 pb-8">
           <p className="text-xs font-semibold tracking-widest uppercase mb-4"
             style={{ color: c, letterSpacing: "0.16em" }}>
-            De Invalshoek
+            De kern
           </p>
-          <p className="text-base leading-relaxed" style={{ color: "#1E2D3D" }}>
-            {post.invalshoek}
-          </p>
+          <h2 className="text-2xl md:text-3xl font-semibold leading-tight"
+            style={{ color: "#1E2D3D" }}>
+            {post.curiosityHeader}
+          </h2>
         </section>
 
-        {/* Ingrediënten */}
-        <section className="py-6" style={{ borderTop: "1px solid #E2E6EA" }}>
+        {/* Blok 2: Persoonlijke Missie */}
+        <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
           <p className="text-xs font-semibold tracking-widest uppercase mb-4"
             style={{ color: c, letterSpacing: "0.16em" }}>
-            Wat heb je nodig
+            Waarom dit mij irriteerde
           </p>
-          <ul className="space-y-2">
-            {post.ingredienten.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm" style={{ color: "#1E2D3D" }}>
-                <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5"
-                  style={{ backgroundColor: `${c}15`, color: c }}>
-                  {i + 1}
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
+          <div className="text-base leading-relaxed" style={{ color: "#4A5568" }}>
+            {renderBold(post.persoonlijkeMissie)}
+          </div>
         </section>
 
-        {/* Werkwijze */}
-        <section className="py-6" style={{ borderTop: "1px solid #E2E6EA" }}>
-          <p className="text-xs font-semibold tracking-widest uppercase mb-6"
+        {/* Blok 3: Transformatie */}
+        <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
+          <p className="text-xs font-semibold tracking-widest uppercase mb-5"
             style={{ color: c, letterSpacing: "0.16em" }}>
-            De Werkwijze
+            De transformatie
           </p>
-          <ol className="space-y-4">
-            {post.stappen.map((stap, i) => (
-              <li key={i} className="flex items-start gap-4">
-                <span className="w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5"
-                  style={{ backgroundColor: c, color: "#FFFFFF" }}>
-                  {i + 1}
-                </span>
-                <p className="text-sm leading-relaxed pt-1" style={{ color: "#1E2D3D" }}>{stap}</p>
-              </li>
-            ))}
-          </ol>
+          <div className="rounded-xl p-5 space-y-4" style={{ backgroundColor: "#F0F4F8", border: "1px solid #E2E6EA" }}>
+            {renderParagraphs(post.transformatie, "#1E2D3D")}
+          </div>
+        </section>
+
+        {/* Blok 4: Strategische Logica */}
+        <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
+          <p className="text-xs font-semibold tracking-widest uppercase mb-5"
+            style={{ color: c, letterSpacing: "0.16em" }}>
+            De strategische logica
+          </p>
+          <div className="space-y-1">
+            {renderParagraphs(post.strategischeLogica, "#4A5568")}
+          </div>
         </section>
 
         {/* Codeboek */}
-        <section className="pt-6" style={{ borderTop: "1px solid #E2E6EA" }}>
+        <section className="pt-2 pb-8" style={{ borderTop: "1px solid #E2E6EA" }}>
           <Codeboek prompt={post.prompt} tip={post.promptTip} />
         </section>
 
-        {/* Winst-Slider */}
+        {/* Blok 5: De Nuance */}
+        <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
+          <div className="flex gap-4 rounded-xl p-5" style={{ backgroundColor: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)" }}>
+            <div className="flex-shrink-0 mt-0.5">
+              <svg className="w-4 h-4" fill="none" stroke="#EF4444" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "#EF4444", letterSpacing: "0.12em" }}>
+                Wanneer werkt dit niet
+              </p>
+              <p className="text-sm leading-relaxed" style={{ color: "#4A5568" }}>
+                {renderBold(post.nuance)}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Blok 6: Impact & CTA + WinstSlider */}
         <section style={{ borderTop: "1px solid #E2E6EA" }}>
+          <div className="pt-8 pb-2">
+            <p className="text-sm leading-relaxed" style={{ color: "#4A5568" }}>
+              {renderBold(post.impactCTA)}
+            </p>
+          </div>
           <WinstSlider
             savingsPerTask={post.savingsPerTask}
             frequentieLabel={post.frequentieLabel}
