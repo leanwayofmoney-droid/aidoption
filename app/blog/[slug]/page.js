@@ -83,13 +83,34 @@ export default function AIFixPage({ params }) {
           <h1 className="text-3xl md:text-4xl font-semibold leading-tight mb-4" style={{ color: "#1E2D3D" }}>
             {post.title}
           </h1>
-          <p className="text-base leading-relaxed mb-5" style={{ color: "#6C7B8B" }}>{post.excerpt}</p>
+          <p className="text-base leading-relaxed mb-6" style={{ color: "#6C7B8B" }}>{post.excerpt}</p>
+
+          {/* Blok 0: Meta-data */}
+          <div className="rounded-xl overflow-hidden mb-5" style={{ border: "1px solid #E2E6EA" }}>
+            <table className="w-full text-sm">
+              <tbody>
+                {[
+                  { label: "Tool", value: post.tool },
+                  { label: "Tijdswinst", value: `${post.savingsPerTask} min ${post.frequentieLabel}` },
+                  { label: "Niveau", value: post.niveau },
+                ].map((row, i) => (
+                  <tr key={i} style={{ borderBottom: i < 2 ? "1px solid #E2E6EA" : "none" }}>
+                    <td className="px-4 py-3 font-medium w-32" style={{ color: "#9BA8B5", backgroundColor: "#F8F9FA" }}>
+                      {row.label}
+                    </td>
+                    <td className="px-4 py-3" style={{ color: "#1E2D3D" }}>
+                      {row.value}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <div className="flex items-center gap-3 text-xs" style={{ color: "#9BA8B5" }}>
             <span>{post.date}</span>
             <span>·</span>
             <span>{post.readTime} lezen</span>
-            <span>·</span>
-            <span style={{ color: "#6C7B8B" }}>{post.tool}</span>
           </div>
         </header>
 
