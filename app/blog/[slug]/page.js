@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getPostBySlug, posts } from "../../../lib/posts";
+import { getPostBySlug, getPosts } from "../../../lib/notion";
 import NewsletterForm from "../../../components/NewsletterForm";
 import WinstSlider from "../../../components/WinstSlider";
 import ReceptCard from "../../../components/ReceptCard";
 
 export async function generateStaticParams() {
+  const posts = await getPosts();
   return posts.map((p) => ({ slug: p.slug }));
 }
 
@@ -39,7 +40,8 @@ export default function AIFixPage({ params }) {
   const post = getPostBySlug(params.slug);
   if (!post) notFound();
 
-  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
+  const allPosts = await getPosts();
+  const related = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
   const c = post.color || "#2C5A85";
 
   return (

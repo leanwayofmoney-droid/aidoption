@@ -1,13 +1,14 @@
 import NewsletterForm from "../../components/NewsletterForm";
 import ReceptCard from "../../components/ReceptCard";
-import { posts } from "../../lib/posts";
+import { getPosts } from "../../lib/notion";
 
 export const metadata = {
   title: "AI-Fixes — AIdoption",
   description: "Alle AI-Fixes voor je dagelijkse leven.",
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getPosts();
   const [featured, ...rest] = posts;
 
   return (

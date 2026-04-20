@@ -2,9 +2,10 @@ import Link from "next/link";
 import NewsletterForm from "../components/NewsletterForm";
 import ReceptCard from "../components/ReceptCard";
 import HeroIllustration from "../components/HeroIllustration";
-import { posts } from "../lib/posts";
+import { getPosts } from "../lib/notion";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await getPosts();
   const [featured, ...rest] = posts;
   const recent = rest.slice(0, 4);
 
