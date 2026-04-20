@@ -3,13 +3,30 @@ import { useState } from "react";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(null); // null | "loading" | "success" | "error"
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!email) return;
-    setStatus("success");
-    setEmail("");
+
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -48,31 +65,40 @@ export default function NewsletterForm() {
           Bedankt! Je staat ingeschreven.
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto relative">
-          <input
-            type="email"
-            required
-            placeholder="jouw@email.nl"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 px-4 py-3 rounded-full text-sm focus:outline-none focus:ring-2"
-            style={{
-              backgroundColor: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              color: "#FFFFFF",
-              focusRingColor: "#2C5A85",
-            }}
-          />
-          <button
-            type="submit"
-            className="text-white px-6 py-3 rounded-full text-sm font-medium transition-colors whitespace-nowrap"
-            style={{ backgroundColor: "#2C5A85" }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = "#1A3A57"}
-            onMouseLeave={e => e.currentTarget.style.backgroundColor = "#2C5A85"}
-          >
-            Inschrijven
-          </button>
-        </form>
+        <>
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto relative">
+            <input
+              type="email"
+              required
+              placeholder="jouw@email.nl"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={status === "loading"}
+              className="flex-1 px-4 py-3 rounded-full text-sm focus:outline-none focus:ring-2"
+              style={{
+                backgroundColor: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                color: "#FFFFFF",
+              }}
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="text-white px-6 py-3 rounded-full text-sm font-medium transition-colors whitespace-nowrap"
+              style={{ backgroundColor: status === "loading" ? "#1A3A57" : "#2C5A85" }}
+              onMouseEnter={e => { if (status !== "loading") e.currentTarget.style.backgroundColor = "#1A3A57"; }}
+              onMouseLeave={e => { if (status !== "loading") e.currentTarget.style.backgroundColor = "#2C5A85"; }}
+            >
+              {status === "loading" ? "Bezig..." : "Inschrijven"}
+            </button>
+          </form>
+
+          {status === "error" && (
+            <p className="text-xs mt-3 relative" style={{ color: "#F87171" }}>
+              Er ging iets mis. Probeer het opnieuw.
+            </p>
+          )}
+        </>
       )}
     </section>
   );
