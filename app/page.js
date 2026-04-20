@@ -2,6 +2,7 @@ import Link from "next/link";
 import NewsletterForm from "../components/NewsletterForm";
 import ReceptCard from "../components/ReceptCard";
 import HeroIllustration from "../components/HeroIllustration";
+import HomepageTopFixes from "../components/HomepageTopFixes";
 import { getPosts } from "../lib/notion";
 
 export default async function HomePage() {
@@ -96,6 +97,9 @@ export default async function HomePage() {
         </p>
         <ReceptCard post={featured} wide />
       </section>
+
+      {/* Top 5 meest gewaardeerd */}
+      <HomepageTopFixes />
 
       {/* Nieuwste AI-Fixes */}
       <section className="pb-20">
