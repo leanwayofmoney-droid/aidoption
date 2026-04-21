@@ -5,7 +5,7 @@ import { getPosts } from "../../lib/notion";
 export const metadata = {
   title: "Alle AI-Fixes",
   description:
-    "Kant-en-klare AI-oplossingen voor je dagelijkse taken. Kopieer de prompt en bespaar direct tijd — voor beginners.",
+    "Kant-en-klare AI-oplossingen voor je dagelijkse taken. Kopieer de prompt en bespaar direct tijd. Voor beginners.",
   alternates: { canonical: "https://ai-doption.nl/blog" },
   openGraph: {
     type: "website",

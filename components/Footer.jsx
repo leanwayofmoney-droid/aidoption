@@ -24,7 +24,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6 py-4 text-xs" style={{ color: "#4E5D6C" }}>
-          © {new Date().getFullYear()} AIdoption — Alle rechten voorbehouden
+          © {new Date().getFullYear()} AIdoption. Alle rechten voorbehouden.
         </div>
       </div>
     </footer>

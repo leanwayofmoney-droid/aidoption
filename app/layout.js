@@ -12,7 +12,7 @@ export const metadata = {
     template: "%s — AIdoption",
   },
   description:
-    "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd — geen technische kennis nodig.",
+    "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd. Geen technische kennis nodig.",
   keywords: [
     "AI tips", "ChatGPT gebruiken", "Claude AI", "AI productiviteit",
     "AI voor beginners", "AI dagelijks leven", "AI tijdsbesparing",

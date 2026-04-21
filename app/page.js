@@ -53,38 +53,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Drie pijlers (full-width) ─────────────────────────── */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-20">
-        {[
-          {
-            icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>,
-            label: "De Werkwijze",
-            desc: "Stap-voor-stap uitleg, direct toepasbaar.",
-          },
-          {
-            icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>,
-            label: "Het Codeboek",
-            desc: "De exacte prompt — kopieer en plak.",
-          },
-          {
-            icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
-            label: "De Winst-Slider",
-            desc: "Zie hoeveel uur jij per jaar bespaart.",
-          },
-        ].map((item) => (
-          <div key={item.label} className="relative bg-white rounded-2xl p-6 overflow-hidden"
-            style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: "1px solid #E2E6EA" }}>
-            <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl" style={{ backgroundColor: "#2C5A85" }} />
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 mt-1"
-              style={{ backgroundColor: "rgba(44,90,133,0.1)", color: "#2C5A85" }}>
-              {item.icon}
-            </div>
-            <p className="font-semibold mb-1 text-sm" style={{ color: "#1E2D3D" }}>{item.label}</p>
-            <p className="text-sm leading-snug" style={{ color: "#6C7B8B" }}>{item.desc}</p>
-          </div>
-        ))}
-      </section>
-
       {/* Uitgelicht */}
       <section className="pb-16">
         <p className="text-xs font-semibold tracking-widest uppercase mb-8"
@@ -110,6 +78,38 @@ export default async function HomePage() {
             <ReceptCard key={post.slug} post={post} />
           ))}
         </div>
+      </section>
+
+      {/* ── Drie pijlers (full-width) ─────────────────────────── */}
+      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-20">
+        {[
+          {
+            icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>,
+            label: "De Werkwijze",
+            desc: "Stap-voor-stap uitleg, direct toepasbaar.",
+          },
+          {
+            icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>,
+            label: "Het Codeboek",
+            desc: "De exacte prompt. Kopieer en plak.",
+          },
+          {
+            icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+            label: "De Winst-Slider",
+            desc: "Zie hoeveel uur jij per jaar bespaart.",
+          },
+        ].map((item) => (
+          <div key={item.label} className="relative bg-white rounded-2xl p-6 overflow-hidden"
+            style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: "1px solid #E2E6EA" }}>
+            <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl" style={{ backgroundColor: "#2C5A85" }} />
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 mt-1"
+              style={{ backgroundColor: "rgba(44,90,133,0.1)", color: "#2C5A85" }}>
+              {item.icon}
+            </div>
+            <p className="font-semibold mb-1 text-sm" style={{ color: "#1E2D3D" }}>{item.label}</p>
+            <p className="text-sm leading-snug" style={{ color: "#6C7B8B" }}>{item.desc}</p>
+          </div>
+        ))}
       </section>
 
       {/* ── Nieuwsbrief (full-width) ──────────────────────────── */}

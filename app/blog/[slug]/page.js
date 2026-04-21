@@ -261,7 +261,7 @@ export default async function AIFixPage({ params }) {
                 Klaar om te kopiëren en plakken
               </p>
               <p className="text-sm leading-relaxed mb-5" style={{ color: "#6C7B8B" }}>
-                De volledige prompt die ik gebruik staat in Het Codeboek — inclusief de exacte instructies,
+                De volledige prompt die ik gebruik staat in Het Codeboek, inclusief de exacte instructies,
                 variabelen en tips voor betere output. Schrijf je in voor de nieuwsbrief en ontvang hem direct.
               </p>
               <a

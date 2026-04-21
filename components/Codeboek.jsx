@@ -25,7 +25,7 @@ export default function Codeboek({ prompt, tip }) {
             <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
           </div>
           <span className="text-xs font-semibold ml-2" style={{ color: "#9BBCD8", letterSpacing: "0.1em" }}>
-            HET CODEBOEK — KOPIEER DEZE PROMPT
+            HET CODEBOEK · KOPIEER DEZE PROMPT
           </span>
         </div>
         <button

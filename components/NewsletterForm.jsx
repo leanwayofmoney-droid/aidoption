@@ -51,7 +51,7 @@ export default function NewsletterForm() {
         Blijf op de hoogte
       </h2>
       <p className="text-sm md:text-base max-w-md mx-auto mb-10 leading-relaxed relative" style={{ color: "#9BA8B5" }}>
-        Ontvang praktische AI-tips direct in je inbox. Geen spam, geen verkooppraatjes — alleen bruikbare inzichten.
+        Ontvang praktische AI-tips direct in je inbox. Geen spam, geen verkooppraatjes. Alleen bruikbare inzichten.
       </p>
 
       {status === "success" ? (
