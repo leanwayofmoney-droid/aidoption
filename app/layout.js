@@ -1,6 +1,7 @@
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const BASE = "https://ai-doption.nl";
 
@@ -79,6 +80,7 @@ export default function RootLayout({ children }) {
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
