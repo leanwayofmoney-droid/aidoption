@@ -1,0 +1,39 @@
+# AIdoption
+
+> Praktische AI-fixes voor je dagelijkse leven — in het Nederlands
+
+AIdoption publiceert wekelijks AI-fixes: concrete, direct toepasbare oplossingen voor dagelijkse taken met ChatGPT en Claude. Elk artikel beschrijft de strategische logica achter de aanpak. Doelgroep: Nederlandstalige beginners die AI willen gebruiken zonder technische kennis.
+
+## Over AIdoption
+
+- Eigenaar: Stefan
+- Taal: Nederlands
+- Onderwerp: Praktisch AI-gebruik in het dagelijks leven
+- Doelgroep: Beginners, geen technische achtergrond vereist
+- Tools behandeld: ChatGPT, Claude, AI-assistenten
+
+## AI-Fixes (gepubliceerde artikelen)
+
+Elk artikel volgt deze structuur:
+1. Meta-data (tool, tijdswinst, niveau)
+2. Persoonlijke missie (waarom dit probleem)
+3. De transformatie (oud vs. nieuw)
+4. De AI-logica (hoe denkt de AI?)
+5. De nuance (wanneer werkt dit niet)
+6. De fix-CTA (verwijzing naar Het Codeboek)
+
+## Categorieën
+
+- **Communicatie**: e-mail schrijven, WhatsApp-berichten, klachtbrieven, feedback geven
+- **Werk & Carrière**: LinkedIn-profiel, cv, sollicitatiebrief, vergaderingen, presentaties
+- **Financiën**: maandbudget, financieel overzicht, contracten begrijpen
+- **Studie**: teksten samenvatten, studieteksten begrijpen
+- **Dagelijks leven**: weekmenu, koken met restjes, vakantie plannen, slaapschema
+- **Persoonlijke ontwikkeling**: elevator pitch, meditatie-routine, reisverslag
+
+## Sitemap
+
+- Homepage: https://ai-doption.nl
+- Alle AI-Fixes: https://ai-doption.nl/blog
+- Over: https://ai-doption.nl/over
+- Sitemap XML: https://ai-doption.nl/sitemap.xml

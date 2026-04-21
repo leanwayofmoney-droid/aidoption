@@ -2,10 +2,66 @@ import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
+const BASE = "https://ai-doption.nl";
+
 export const metadata = {
-  title: "AIdoption — AI voor je dagelijkse leven",
+  metadataBase: new URL(BASE),
+  title: {
+    default: "AIdoption — AI voor je dagelijkse leven",
+    template: "%s — AIdoption",
+  },
   description:
-    "Praktische gids voor AI-tools die je dagelijks leven efficiënter en prettiger maken. Voor iedereen, niet alleen techies.",
+    "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd — geen technische kennis nodig.",
+  keywords: [
+    "AI tips", "ChatGPT gebruiken", "Claude AI", "AI productiviteit",
+    "AI voor beginners", "AI dagelijks leven", "AI tijdsbesparing",
+    "AI prompts Nederlands", "kunstmatige intelligentie tips",
+  ],
+  authors: [{ name: "Stefan", url: BASE }],
+  creator: "AIdoption",
+  publisher: "AIdoption",
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    url: BASE,
+    siteName: "AIdoption",
+    title: "AIdoption — AI voor je dagelijkse leven",
+    description:
+      "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd.",
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "AIdoption — Praktische AI-fixes",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AIdoption — AI voor je dagelijkse leven",
+    description:
+      "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd.",
+    images: ["/og-default.png"],
+  },
+  alternates: {
+    canonical: BASE,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Voeg hier je Google Search Console verificatiecode toe:
+    // google: "JOUW_VERIFICATIE_CODE",
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -3,8 +3,17 @@ import FilteredPosts from "../../components/FilteredPosts";
 import { getPosts } from "../../lib/notion";
 
 export const metadata = {
-  title: "AI-Fixes — AIdoption",
-  description: "Alle AI-Fixes voor je dagelijkse leven.",
+  title: "Alle AI-Fixes",
+  description:
+    "Kant-en-klare AI-oplossingen voor je dagelijkse taken. Kopieer de prompt en bespaar direct tijd — voor beginners.",
+  alternates: { canonical: "https://ai-doption.nl/blog" },
+  openGraph: {
+    type: "website",
+    url: "https://ai-doption.nl/blog",
+    title: "Alle AI-Fixes — AIdoption",
+    description: "Kant-en-klare AI-oplossingen voor je dagelijkse taken.",
+    images: [{ url: "/og-default.png", width: 1200, height: 630 }],
+  },
 };
 
 export default async function BlogPage() {

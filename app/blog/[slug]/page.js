@@ -12,10 +12,33 @@ export async function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
+const BASE = "https://ai-doption.nl";
+
 export async function generateMetadata({ params }) {
   const post = await getPostBySlug(params.slug);
   if (!post) return {};
-  return { title: `${post.title} — AIdoption`, description: post.excerpt };
+  const url = `${BASE}/blog/${post.slug}`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    keywords: [post.tool, "AI-fix", "AI tips", "AI productiviteit", "ChatGPT", "Claude AI"],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.date,
+      authors: [`${BASE}/over`],
+      images: [{ url: post.image, width: 800, height: 533, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+    },
+  };
 }
 
 // Verwerk **vet** markers naar <strong>
@@ -57,6 +80,44 @@ export default async function AIFixPage({ params }) {
 
         {/* Artikel kolom */}
         <article>
+          {/* JSON-LD Structured Data */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "HowTo",
+                name: post.title,
+                description: post.excerpt,
+                image: post.image,
+                estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "0" },
+                totalTime: `PT${post.savingsPerTask}M`,
+                tool: [{ "@type": "HowToTool", name: post.tool }],
+                step: [
+                  {
+                    "@type": "HowToStep",
+                    name: "Begrijp de aanpak",
+                    text: post.persoonlijkeMissie?.replace(/\*\*/g, ""),
+                  },
+                  {
+                    "@type": "HowToStep",
+                    name: "De transformatie",
+                    text: post.transformatie?.replace(/\*\*/g, ""),
+                  },
+                  {
+                    "@type": "HowToStep",
+                    name: "De AI-logica",
+                    text: post.strategischeLogica?.replace(/\*\*/g, ""),
+                  },
+                ],
+                publisher: {
+                  "@type": "Organization",
+                  name: "AIdoption",
+                  url: "https://ai-doption.nl",
+                },
+              }),
+            }}
+          />
 
           {/* Back */}
           <div className="pt-10 pb-8">
