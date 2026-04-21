@@ -2,7 +2,6 @@ import Link from "next/link";
 import NewsletterForm from "../components/NewsletterForm";
 import ReceptCard from "../components/ReceptCard";
 import HeroIllustration from "../components/HeroIllustration";
-import HomepageTopFixes from "../components/HomepageTopFixes";
 import { getPosts } from "../lib/notion";
 
 export default async function HomePage() {
@@ -86,47 +85,32 @@ export default async function HomePage() {
         ))}
       </section>
 
-      {/* ── Grid: hoofd + sidebar ─────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 items-start">
+      {/* Uitgelicht */}
+      <section className="pb-16">
+        <p className="text-xs font-semibold tracking-widest uppercase mb-8"
+          style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+          Uitgelicht
+        </p>
+        <ReceptCard post={featured} wide />
+      </section>
 
-        {/* Hoofdinhoud */}
-        <div>
-          {/* Uitgelicht */}
-          <section className="pb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase mb-8"
-              style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-              Uitgelicht
-            </p>
-            <ReceptCard post={featured} wide />
-          </section>
-
-          {/* Nieuwste AI-Fixes */}
-          <section className="pb-20">
-            <div className="flex items-center justify-between mb-8">
-              <p className="text-xs font-semibold tracking-widest uppercase"
-                style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-                Nieuwste AI-Fixes
-              </p>
-              <Link href="/blog" className="text-sm transition-colors" style={{ color: "#6C7B8B" }}>
-                Alle AI-Fixes →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {recent.map((post) => (
-                <ReceptCard key={post.slug} post={post} />
-              ))}
-            </div>
-          </section>
+      {/* Nieuwste AI-Fixes */}
+      <section className="pb-20">
+        <div className="flex items-center justify-between mb-8">
+          <p className="text-xs font-semibold tracking-widest uppercase"
+            style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+            Nieuwste AI-Fixes
+          </p>
+          <Link href="/blog" className="text-sm transition-colors" style={{ color: "#6C7B8B" }}>
+            Alle AI-Fixes →
+          </Link>
         </div>
-
-        {/* Sidebar: Top 5 (sticky) */}
-        <div className="hidden lg:block">
-          <div className="sticky top-8">
-            <HomepageTopFixes />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {recent.map((post) => (
+            <ReceptCard key={post.slug} post={post} />
+          ))}
         </div>
-
-      </div>
+      </section>
 
       {/* ── Nieuwsbrief (full-width) ──────────────────────────── */}
       <section id="nieuwsbrief" className="pb-24">
