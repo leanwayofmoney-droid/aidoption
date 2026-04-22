@@ -23,7 +23,7 @@ export default async function HomePage() {
       {/* ── Hero — eigen full-width achtergrond ───────────────── */}
       <div style={{ backgroundColor: "#F9F6F2", borderBottom: "1px solid #EDE6DC" }}>
         <div className="max-w-6xl mx-auto px-6">
-          <section className="relative pt-16 md:pt-24 pb-12 overflow-hidden">
+          <section className="relative pt-10 md:pt-14 pb-12 overflow-hidden">
 
             {/* Bewegende achtergrond blobs */}
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -36,9 +36,9 @@ export default async function HomePage() {
               {/* Links: tekst */}
               <div className="pt-4">
                 <p className="eyebrow hero-animate mb-5">Meer tijd voor wat telt</p>
-                <h1 className="hero-animate-d1 text-4xl sm:text-5xl md:text-[3.25rem] font-semibold mb-6"
-                  style={{ color: "#1E2D3D" }}>
-                  Bespaar uren per week<br />met AI die voor jou werkt
+                <h1 className="hero-animate-d1 text-[2rem] sm:text-[2.4rem] md:text-[2.5rem] font-semibold mb-6"
+                  style={{ color: "#1E2D3D", letterSpacing: "-0.025em", lineHeight: 1.12 }}>
+                  Bespaar uren per week<br className="hidden sm:block" /> met AI die voor jou werkt
                 </h1>
 
                 {/* Stat badges */}
