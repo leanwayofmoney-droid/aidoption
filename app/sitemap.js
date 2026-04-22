@@ -13,7 +13,7 @@ export default async function sitemap() {
 
   const postPages = posts.map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
-    lastModified: post.date ? new Date(post.date) : new Date(),
+    lastModified: (() => { try { const d = new Date(post.date); return isNaN(d.getTime()) ? new Date() : d; } catch { return new Date(); } })(),
     changeFrequency: "monthly",
     priority: 0.8,
   }));
