@@ -16,9 +16,17 @@ export default function Footer() {
 
         <div className="flex flex-col gap-2 text-sm">
           <p className="font-medium mb-1 text-white">Navigatie</p>
-          <Link href="/blog" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>Blog</Link>
+          <Link href="/blog" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>AI-Fixes</Link>
           <Link href="/over" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>Over</Link>
           <Link href="/#nieuwsbrief" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>Nieuwsbrief</Link>
+        </div>
+
+        <div className="flex flex-col gap-2 text-sm">
+          <p className="font-medium mb-1 text-white">Leren</p>
+          <Link href="/ai-voor-beginners" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>AI voor beginners</Link>
+          <Link href="/chatgpt-voor-beginners" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>ChatGPT voor beginners</Link>
+          <Link href="/ai-prompts-schrijven" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>AI-prompts schrijven</Link>
+          <Link href="/ai-woordenlijst" className="hover:text-white transition-colors" style={{ color: "#9BA8B5" }}>AI-woordenlijst</Link>
         </div>
       </div>
 

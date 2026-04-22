@@ -15,6 +15,8 @@ export default function Nav() {
 
         <nav aria-label="Hoofdnavigatie" className="hidden md:flex items-center gap-8 text-sm" style={{ color: "#9BA8B5" }}>
           <Link href="/blog" className="hover:text-white transition-colors">AI-Fixes</Link>
+          <Link href="/ai-voor-beginners" className="hover:text-white transition-colors">Beginners</Link>
+          <Link href="/ai-woordenlijst" className="hover:text-white transition-colors">Woordenlijst</Link>
           <Link href="/over" className="hover:text-white transition-colors">Over</Link>
           <Link
             href="/#nieuwsbrief"
@@ -48,6 +50,8 @@ export default function Nav() {
       {open && (
         <div id="mobile-menu" className="md:hidden border-t border-white/10 px-6 py-5 flex flex-col gap-4 text-sm bg-[#0F1A26]" style={{ color: "#9BA8B5" }}>
           <Link href="/blog" onClick={() => setOpen(false)} className="hover:text-white">AI-Fixes</Link>
+          <Link href="/ai-voor-beginners" onClick={() => setOpen(false)} className="hover:text-white">Beginners</Link>
+          <Link href="/ai-woordenlijst" onClick={() => setOpen(false)} className="hover:text-white">Woordenlijst</Link>
           <Link href="/over" onClick={() => setOpen(false)} className="hover:text-white">Over</Link>
           <Link href="/#nieuwsbrief" onClick={() => setOpen(false)} style={{ color: "#9BBCD8" }}>
             Nieuwsbrief
