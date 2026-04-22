@@ -103,8 +103,8 @@ export default function ReceptCard({ post, wide = false }) {
           />
           {/* Savings badge over image */}
           <div className="absolute bottom-3 left-4">
-            <span className="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm"
-              style={{ backgroundColor: "rgba(0,0,0,0.55)", color: "#FFFFFF" }}>
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
+              style={{ backgroundColor: "#C8813F", color: "#FFFFFF" }}>
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -114,7 +114,7 @@ export default function ReceptCard({ post, wide = false }) {
         </div>
 
         {/* Content */}
-        <div className="p-5 flex flex-col flex-1">
+        <div className="p-6 flex flex-col flex-1">
           <h3 className="font-semibold text-base leading-snug mb-2 transition-colors duration-150"
             style={{ color: "#1E2D3D" }}>
             <span className="group-hover:text-[#2C5A85]">{post.title}</span>

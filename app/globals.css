@@ -4,15 +4,117 @@
 
 /* Font wordt geladen via <link> in layout.js met preconnect — geen dubbele @import nodig */
 
+/* ── Design tokens ───────────────────────────────────────────── */
+:root {
+  --color-primary:  #2C5A85;
+  --color-accent:   #C8813F;
+  --color-navy:     #1E2D3D;
+  --color-gray:     #6C7B8B;
+  --color-muted:    #9BA8B5;
+  --color-bg:       #F8F9FA;
+  --color-surface:  #FFFFFF;
+  --color-border:   #E2E6EA;
+
+  --font-display:   'Fraunces', Georgia, serif;
+  --font-body:      'Inter', system-ui, sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #F8F9FA;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
   color: #1E293B;
   -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typografie: serif voor display-koppen ───────────────────── */
+h1, h2 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Kleinere h2's (tekst in kaarten, zijbalk) houden de letterspacing rustiger */
+h2 {
+  letter-spacing: -0.015em;
+}
+
+/* ── Eyebrow label ───────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ── Hero blob animaties ─────────────────────────────────────── */
+.hero-blob-1 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(44,90,133,0.13) 0%, transparent 65%);
+  top: -220px;
+  right: -160px;
+  animation: blob-float 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-blob-2 {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(200,129,63,0.06) 0%, transparent 70%);
+  bottom: -40px;
+  left: 15%;
+  animation: blob-float 20s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes blob-float {
+  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
+  33%        { transform: translate(18px, -22px) scale(1.04); }
+  66%        { transform: translate(-12px, 14px) scale(0.97); }
+}
+
+/* ── Hero entrance (één keer bij page load) ──────────────────── */
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.hero-animate          { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-animate-d1       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 120ms  both; }
+.hero-animate-d2       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 260ms  both; }
+.hero-animate-d3       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 420ms  both; }
+.hero-animate-d4       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 560ms  both; }
+
+/* ── Nav underline animatie ──────────────────────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link-active::after {
+  width: 100%;
 }
 
 /* ── Hero blob animaties ─────────────────────────────────────── */

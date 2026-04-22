@@ -34,31 +34,35 @@ export default async function HomePage() {
 
           {/* Links: tekst */}
           <div>
-            <p className="hero-animate text-xs font-semibold tracking-widest uppercase mb-5"
-              style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+            <p className="eyebrow hero-animate mb-5">
               Meer tijd voor wat telt
             </p>
-            <h1 className="hero-animate-d1 text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-tight mb-5"
+            <h1 className="hero-animate-d1 text-4xl sm:text-5xl md:text-[3.25rem] font-semibold mb-6"
               style={{ color: "#1E2D3D" }}>
               Bespaar uren per week<br />met AI die voor jou werkt
             </h1>
 
             {/* Stat badges */}
-            <div className="hero-animate-d2 flex flex-wrap gap-2 mb-6">
-              {["25 AI-fixes", "Geen technische kennis", "Direct toepasbaar"].map((s) => (
-                <span key={s}
-                  className="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full"
+            <div className="hero-animate-d2 flex flex-wrap gap-2 mb-7">
+              {[
+                { label: "25 AI-fixes", icon: "✦" },
+                { label: "Geen technische kennis", icon: "○" },
+                { label: "Direct toepasbaar", icon: "→" },
+              ].map((s) => (
+                <span key={s.label}
+                  className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full"
                   style={{
-                    backgroundColor: "rgba(44,90,133,0.08)",
-                    color: "#2C5A85",
-                    border: "1px solid rgba(44,90,133,0.15)",
+                    backgroundColor: "rgba(200,129,63,0.08)",
+                    color: "#C8813F",
+                    border: "1px solid rgba(200,129,63,0.2)",
                   }}>
-                  {s}
+                  <span style={{ fontSize: "0.6rem" }}>{s.icon}</span>
+                  {s.label}
                 </span>
               ))}
             </div>
 
-            <p className="hero-animate-d2 text-base md:text-lg leading-relaxed mb-8"
+            <p className="hero-animate-d2 text-base md:text-lg leading-relaxed mb-9"
               style={{ color: "#6C7B8B" }}>
               Praktische{" "}
               <strong style={{ color: "#2C5A85", fontWeight: 600 }}>AI-fixes</strong>{" "}
@@ -100,10 +104,7 @@ export default async function HomePage() {
       {/* ── Categorieën ───────────────────────────────────────── */}
       <FadeInUp>
         <section className="py-10" style={{ borderTop: "1px solid #E2E6EA" }}>
-          <p className="text-xs font-semibold tracking-widest uppercase mb-5"
-            style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-            Verken per onderwerp
-          </p>
+          <p className="eyebrow mb-5">Verken per onderwerp</p>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
               <Link
@@ -129,10 +130,7 @@ export default async function HomePage() {
       <section className="pb-20">
         <FadeInUp>
           <div className="flex items-center justify-between mb-8">
-            <p className="text-xs font-semibold tracking-widest uppercase"
-              style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-              Nieuwste AI-Fixes
-            </p>
+            <p className="eyebrow">Nieuwste AI-Fixes</p>
             <Link href="/blog" className="text-sm transition-colors" style={{ color: "#6C7B8B" }}>
               Alle AI-Fixes →
             </Link>

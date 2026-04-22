@@ -13,8 +13,8 @@ export default function Nav() {
   const navLink = (href, label) => (
     <Link
       href={href}
-      className={`nav-link hover:text-white transition-colors ${isActive(href) ? "nav-link-active text-white" : ""}`}
-      style={{ color: isActive(href) ? "#FFFFFF" : undefined }}
+      className={`nav-link hover:text-white transition-colors ${isActive(href) ? "nav-link-active" : ""}`}
+      style={{ color: isActive(href) ? "#C8813F" : undefined }}
     >
       {label}
     </Link>
