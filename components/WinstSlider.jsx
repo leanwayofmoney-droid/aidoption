@@ -39,6 +39,10 @@ export default function WinstSlider({ savingsPerTask, frequentieLabel, savingsEu
           max={14}
           value={timesPerWeek}
           onChange={(e) => setTimesPerWeek(Number(e.target.value))}
+          aria-label={`Aantal keer per week: ${timesPerWeek}`}
+          aria-valuemin={1}
+          aria-valuemax={14}
+          aria-valuenow={timesPerWeek}
           className="w-full h-2 rounded-full appearance-none cursor-pointer"
           style={{
             accentColor: "#2C5A85",

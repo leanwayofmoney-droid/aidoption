@@ -77,6 +77,23 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-screen flex flex-col">
+        {/* Organization schema — eenmalig sitebreed voor Google rich snippets */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "AIdoption",
+              url: BASE,
+              logo: `${BASE}/og-default.png`,
+              description: "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd. Geen technische kennis nodig.",
+              inLanguage: "nl-NL",
+              founder: { "@type": "Person", name: "Stefan" },
+              sameAs: [],
+            }),
+          }}
+        />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

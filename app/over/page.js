@@ -2,8 +2,16 @@ import Link from "next/link";
 import NewsletterForm from "../../components/NewsletterForm";
 
 export const metadata = {
-  title: "Over — AIdoption",
-  description: "Wat is AIdoption en waarom bestaat deze website?",
+  title: "Over",
+  description: "AIdoption helpt je AI tastbaar te maken in je dagelijks leven. Praktische AI-fixes zonder technische kennis, direct toepasbaar.",
+  alternates: { canonical: "https://ai-doption.nl/over" },
+  openGraph: {
+    type: "website",
+    url: "https://ai-doption.nl/over",
+    title: "Over AIdoption",
+    description: "AIdoption helpt je AI tastbaar te maken in je dagelijks leven. Praktische AI-fixes zonder technische kennis, direct toepasbaar.",
+    images: [{ url: "/og-default.png", width: 1200, height: 630 }],
+  },
 };
 
 export default function OverPage() {
