@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import NewsletterForm from "../../components/NewsletterForm";
 import FilteredPosts from "../../components/FilteredPosts";
+import BlogTopFixes from "../../components/BlogTopFixes";
 import { getPosts } from "../../lib/notion";
 
 export const metadata = {
@@ -34,7 +36,13 @@ export default async function BlogPage() {
         </p>
       </section>
 
-      <FilteredPosts posts={posts} />
+      {/* Top 5 meest gewaardeerd */}
+      <BlogTopFixes />
+
+      {/* Zoekbalk + filter + grid */}
+      <Suspense fallback={null}>
+        <FilteredPosts posts={posts} />
+      </Suspense>
 
       <section className="pb-24">
         <NewsletterForm />

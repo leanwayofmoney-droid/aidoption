@@ -6,6 +6,8 @@ import NewsletterForm from "../../../components/NewsletterForm";
 import WinstSlider from "../../../components/WinstSlider";
 import ReceptCard from "../../../components/ReceptCard";
 import Sidebar from "../../../components/Sidebar";
+import StarRating from "../../../components/StarRating";
+import SidebarTopFixes from "../../../components/SidebarTopFixes";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -322,6 +324,12 @@ export default async function AIFixPage({ params }) {
           <div className="sticky top-8 pt-10">
             <Sidebar slug={post.slug} />
           </div>
+        </div>
+
+        {/* ── Mobile: sterren + Top 5 (alleen zichtbaar onder lg) ── */}
+        <div className="lg:hidden mt-6 space-y-4">
+          <StarRating slug={post.slug} />
+          <SidebarTopFixes />
         </div>
 
       </div>{/* einde grid */}
