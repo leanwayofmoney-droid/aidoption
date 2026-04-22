@@ -3,7 +3,9 @@ import NewsletterForm from "../components/NewsletterForm";
 import ReceptCard from "../components/ReceptCard";
 import FadeInUp from "../components/FadeInUp";
 import ScrollIndicator from "../components/ScrollIndicator";
+import HeroTop3 from "../components/HeroTop3";
 import { getPosts } from "../lib/notion";
+import { getTopFixes } from "../lib/ratings";
 
 const CATEGORIES = [
   { label: "Communicatie",        icon: "💬", color: "#2C5A85" },
@@ -15,8 +17,14 @@ const CATEGORIES = [
 
 export default async function HomePage() {
   const posts = await getPosts();
-  const [featured, ...rest] = posts;
-  const recent = rest.slice(0, 4);
+  const recent = posts.slice(0, 4);
+
+  // Top 3: hoogst gewaardeerd, anders de 3 meest recente
+  const topRated = await getTopFixes(posts, 3);
+  const top3Slugs = topRated.length >= 3 ? topRated.map((t) => t.slug) : [];
+  const top3 = top3Slugs.length >= 3
+    ? top3Slugs.map((s) => posts.find((p) => p.slug === s)).filter(Boolean)
+    : posts.slice(0, 3);
 
   return (
     <>
@@ -81,20 +89,9 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              {/* Rechts: uitgelichte fix — direct zichtbaar */}
-              <div className="hero-animate-d4 relative">
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 rounded-2xl pointer-events-none"
-                  style={{
-                    background: `radial-gradient(ellipse at 50% 60%, ${featured?.color || "#2C5A85"}25 0%, transparent 70%)`,
-                    filter: "blur(32px)",
-                    transform: "scale(1.15)",
-                  }}
-                />
-                <div className="relative">
-                  {featured && <ReceptCard post={featured} />}
-                </div>
+              {/* Rechts: Top 3 — direct zichtbaar */}
+              <div className="hero-animate-d4">
+                <HeroTop3 posts={top3} />
               </div>
             </div>
 
