@@ -1,10 +1,24 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import LogoWordmark from "./Logo";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href) => pathname === href || pathname.startsWith(href + "/");
+
+  const navLink = (href, label) => (
+    <Link
+      href={href}
+      className={`nav-link hover:text-white transition-colors ${isActive(href) ? "nav-link-active text-white" : ""}`}
+      style={{ color: isActive(href) ? "#FFFFFF" : undefined }}
+    >
+      {label}
+    </Link>
+  );
 
   return (
     <header className="w-full bg-[#0F1A26] sticky top-0 z-50">
@@ -14,10 +28,10 @@ export default function Nav() {
         </Link>
 
         <nav aria-label="Hoofdnavigatie" className="hidden md:flex items-center gap-8 text-sm" style={{ color: "#9BA8B5" }}>
-          <Link href="/blog" className="hover:text-white transition-colors">AI-Fixes</Link>
-          <Link href="/ai-voor-beginners" className="hover:text-white transition-colors">Beginners</Link>
-          <Link href="/ai-woordenlijst" className="hover:text-white transition-colors">Woordenlijst</Link>
-          <Link href="/over" className="hover:text-white transition-colors">Over</Link>
+          {navLink("/blog", "AI-Fixes")}
+          {navLink("/ai-voor-beginners", "Beginners")}
+          {navLink("/ai-woordenlijst", "Woordenlijst")}
+          {navLink("/over", "Over")}
           <Link
             href="/#nieuwsbrief"
             className="text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"

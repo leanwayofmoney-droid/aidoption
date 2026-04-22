@@ -2,6 +2,7 @@ import Link from "next/link";
 import NewsletterForm from "../components/NewsletterForm";
 import ReceptCard from "../components/ReceptCard";
 import HeroIllustration from "../components/HeroIllustration";
+import FadeInUp from "../components/FadeInUp";
 import { getPosts } from "../lib/notion";
 
 export default async function HomePage() {
@@ -14,6 +15,14 @@ export default async function HomePage() {
 
       {/* ── Hero (full-width) ──────────────────────────────────── */}
       <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 overflow-hidden">
+
+        {/* Bewegende achtergrond blobs */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="hero-blob-1" />
+          <div className="hero-blob-2" />
+        </div>
+
+        {/* Hero illustratie rechts */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute right-0 top-0 bottom-0 w-[420px] hidden md:block"
@@ -25,22 +34,23 @@ export default async function HomePage() {
         >
           <HeroIllustration />
         </div>
+
         <div className="relative z-10 max-w-xl">
-          <p className="text-xs font-semibold tracking-widest uppercase mb-5"
+          <p className="hero-animate text-xs font-semibold tracking-widest uppercase mb-5"
             style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
             Meer tijd voor wat telt
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-tight mb-5"
+          <h1 className="hero-animate-d1 text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-tight mb-5"
             style={{ color: "#1E2D3D" }}>
             Het digitale kookboek<br />voor je dagelijkse leven
           </h1>
-          <p className="text-base md:text-lg leading-relaxed mb-4"
+          <p className="hero-animate-d2 text-base md:text-lg leading-relaxed mb-4"
             style={{ color: "#6C7B8B" }}>
             Gedreven door mijn passie voor AI help ik je om slimme technologie tastbaar te maken in je dagelijks leven. Geen ingewikkelde theorie, maar praktische{" "}
             <strong style={{ color: "#2C5A85", fontWeight: 600 }}>AI-fixes</strong>{" "}
             die direct voor je werken.
           </p>
-          <div className="flex flex-col sm:flex-row items-start gap-3 mt-8">
+          <div className="hero-animate-d3 flex flex-col sm:flex-row items-start gap-3 mt-8">
             <Link href="/blog"
               className="inline-flex items-center justify-center text-white px-6 py-3 rounded-full text-sm font-medium transition-colors bg-[#2C5A85] hover:bg-[#1A3A57]">
               Bekijk alle AI-Fixes
@@ -55,27 +65,35 @@ export default async function HomePage() {
 
       {/* Uitgelicht */}
       <section className="pb-16">
-        <p className="text-xs font-semibold tracking-widest uppercase mb-8"
-          style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-          Uitgelicht
-        </p>
-        <ReceptCard post={featured} wide />
+        <FadeInUp>
+          <p className="text-xs font-semibold tracking-widest uppercase mb-8"
+            style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+            Uitgelicht
+          </p>
+        </FadeInUp>
+        <FadeInUp delay={100}>
+          <ReceptCard post={featured} wide />
+        </FadeInUp>
       </section>
 
       {/* Nieuwste AI-Fixes */}
       <section className="pb-20">
-        <div className="flex items-center justify-between mb-8">
-          <p className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-            Nieuwste AI-Fixes
-          </p>
-          <Link href="/blog" className="text-sm transition-colors" style={{ color: "#6C7B8B" }}>
-            Alle AI-Fixes →
-          </Link>
-        </div>
+        <FadeInUp>
+          <div className="flex items-center justify-between mb-8">
+            <p className="text-xs font-semibold tracking-widest uppercase"
+              style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+              Nieuwste AI-Fixes
+            </p>
+            <Link href="/blog" className="text-sm transition-colors" style={{ color: "#6C7B8B" }}>
+              Alle AI-Fixes →
+            </Link>
+          </div>
+        </FadeInUp>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {recent.map((post) => (
-            <ReceptCard key={post.slug} post={post} />
+          {recent.map((post, i) => (
+            <FadeInUp key={post.slug} delay={i * 100}>
+              <ReceptCard post={post} />
+            </FadeInUp>
           ))}
         </div>
       </section>
@@ -98,24 +116,28 @@ export default async function HomePage() {
             label: "De Winst-Slider",
             desc: "Zie hoeveel uur jij per jaar bespaart.",
           },
-        ].map((item) => (
-          <div key={item.label} className="relative bg-white rounded-2xl p-6 overflow-hidden"
-            style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: "1px solid #E2E6EA" }}>
-            <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl" style={{ backgroundColor: "#2C5A85" }} />
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 mt-1"
-              style={{ backgroundColor: "rgba(44,90,133,0.1)", color: "#2C5A85" }}>
-              {item.icon}
+        ].map((item, i) => (
+          <FadeInUp key={item.label} delay={i * 120}>
+            <div className="relative bg-white rounded-2xl p-6 overflow-hidden h-full"
+              style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: "1px solid #E2E6EA" }}>
+              <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl" style={{ backgroundColor: "#2C5A85" }} />
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-4 mt-1"
+                style={{ backgroundColor: "rgba(44,90,133,0.1)", color: "#2C5A85" }}>
+                {item.icon}
+              </div>
+              <p className="font-semibold mb-1 text-sm" style={{ color: "#1E2D3D" }}>{item.label}</p>
+              <p className="text-sm leading-snug" style={{ color: "#6C7B8B" }}>{item.desc}</p>
             </div>
-            <p className="font-semibold mb-1 text-sm" style={{ color: "#1E2D3D" }}>{item.label}</p>
-            <p className="text-sm leading-snug" style={{ color: "#6C7B8B" }}>{item.desc}</p>
-          </div>
+          </FadeInUp>
         ))}
       </section>
 
       {/* ── Nieuwsbrief (full-width) ──────────────────────────── */}
-      <section id="nieuwsbrief" className="pb-24">
-        <NewsletterForm />
-      </section>
+      <FadeInUp>
+        <section id="nieuwsbrief" className="pb-24">
+          <NewsletterForm />
+        </section>
+      </FadeInUp>
 
     </div>
   );

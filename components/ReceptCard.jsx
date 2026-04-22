@@ -1,15 +1,26 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function ReceptCard({ post, wide = false }) {
   const c = post.color || "#2C5A85";
+  const [hovered, setHovered] = useState(false);
 
   if (wide) {
     return (
-      <Link href={`/blog/${post.slug}`} className="group block">
+      <Link href={`/blog/${post.slug}`} className="group block"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
         <article
-          className="rounded-2xl overflow-hidden relative transition-all duration-200 group-hover:-translate-y-1"
-          style={{ boxShadow: `-4px 0 0 ${c}, 0 2px 12px rgba(0,0,0,0.1)` }}
+          className="rounded-2xl overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1"
+          style={{
+            boxShadow: hovered
+              ? `-4px 0 0 ${c}, 0 16px 40px rgba(0,0,0,0.18), 0 0 0 1px ${c}22`
+              : `-4px 0 0 ${c}, 0 2px 12px rgba(0,0,0,0.1)`,
+            transition: "box-shadow 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.25s cubic-bezier(0.22,1,0.36,1)",
+          }}
         >
           {/* Full-bleed image */}
           <div className="relative" style={{ height: "320px" }}>
@@ -65,10 +76,20 @@ export default function ReceptCard({ post, wide = false }) {
   }
 
   return (
-    <Link href={`/blog/${post.slug}`} className="group block h-full">
+    <Link href={`/blog/${post.slug}`} className="group block h-full"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <article
-        className="bg-white rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-200 group-hover:-translate-y-1"
-        style={{ boxShadow: `-4px 0 0 ${c}, 0 2px 8px rgba(0,0,0,0.07)`, border: "1px solid #E2E6EA" }}
+        className="bg-white rounded-2xl overflow-hidden h-full flex flex-col"
+        style={{
+          border: "1px solid #E2E6EA",
+          boxShadow: hovered
+            ? `-4px 0 0 ${c}, 0 12px 32px rgba(0,0,0,0.12), 0 0 0 1px ${c}18`
+            : `-4px 0 0 ${c}, 0 2px 8px rgba(0,0,0,0.07)`,
+          transform: hovered ? "translateY(-4px)" : "translateY(0px)",
+          transition: "box-shadow 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.25s cubic-bezier(0.22,1,0.36,1)",
+        }}
       >
         {/* Image */}
         <div className="relative h-44 flex-shrink-0 overflow-hidden">

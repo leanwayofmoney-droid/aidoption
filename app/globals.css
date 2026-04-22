@@ -14,3 +14,67 @@ body {
   color: #1E293B;
   -webkit-font-smoothing: antialiased;
 }
+
+/* ── Hero blob animaties ─────────────────────────────────────── */
+.hero-blob-1 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(44,90,133,0.13) 0%, transparent 65%);
+  top: -220px;
+  right: -160px;
+  animation: blob-float 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-blob-2 {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(44,90,133,0.07) 0%, transparent 70%);
+  bottom: -40px;
+  left: 15%;
+  animation: blob-float 20s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes blob-float {
+  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
+  33%        { transform: translate(18px, -22px) scale(1.04); }
+  66%        { transform: translate(-12px, 14px) scale(0.97); }
+}
+
+/* ── Hero entrance (één keer bij page load) ──────────────────── */
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.hero-animate          { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-animate-d1       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 120ms  both; }
+.hero-animate-d2       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 260ms  both; }
+.hero-animate-d3       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 420ms  both; }
+.hero-animate-d4       { animation: hero-enter 0.7s cubic-bezier(0.22,1,0.36,1) 560ms  both; }
+
+/* ── Nav underline animatie ──────────────────────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2C5A85;
+  border-radius: 2px;
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link-active::after {
+  width: 100%;
+}
