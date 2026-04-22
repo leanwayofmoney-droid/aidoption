@@ -4,12 +4,12 @@ import { useSearchParams, useRouter } from "next/navigation";
 import ReceptCard from "./ReceptCard";
 
 const CATEGORIES = [
-  { label: "Alles",            icon: "✦"  },
-  { label: "De Snelle Hap",    icon: "🍴" },
-  { label: "Het Hoofdgerecht", icon: "🍽️" },
-  { label: "De Huishoudpot",   icon: "🏠" },
-  { label: "Het Dagmenu",      icon: "📅" },
-  { label: "Slow Cooking",     icon: "🌱" },
+  { label: "Alles",             icon: "✦"  },
+  { label: "Communicatie",      icon: "💬" },
+  { label: "Carrière",          icon: "💼" },
+  { label: "Financiën",         icon: "💰" },
+  { label: "Dagelijks Leven",   icon: "🏠" },
+  { label: "Persoonlijke Groei",icon: "🌱" },
 ];
 
 export default function FilteredPosts({ posts }) {
