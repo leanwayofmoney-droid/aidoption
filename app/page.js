@@ -1,9 +1,17 @@
 import Link from "next/link";
 import NewsletterForm from "../components/NewsletterForm";
 import ReceptCard from "../components/ReceptCard";
-import HeroIllustration from "../components/HeroIllustration";
 import FadeInUp from "../components/FadeInUp";
+import ScrollIndicator from "../components/ScrollIndicator";
 import { getPosts } from "../lib/notion";
+
+const CATEGORIES = [
+  { label: "Communicatie",        icon: "💬", color: "#2C5A85" },
+  { label: "Carrière",            icon: "💼", color: "#6B46C1" },
+  { label: "Financiën",           icon: "💰", color: "#059669" },
+  { label: "Dagelijks Leven",     icon: "🏠", color: "#D97706" },
+  { label: "Persoonlijke Groei",  icon: "🌱", color: "#DC2626" },
+];
 
 export default async function HomePage() {
   const posts = await getPosts();
@@ -13,8 +21,8 @@ export default async function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-6">
 
-      {/* ── Hero (full-width) ──────────────────────────────────── */}
-      <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 overflow-hidden">
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <section className="relative pt-16 md:pt-24 pb-4 overflow-hidden">
 
         {/* Bewegende achtergrond blobs */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -22,61 +30,102 @@ export default async function HomePage() {
           <div className="hero-blob-2" />
         </div>
 
-        {/* Hero illustratie rechts */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 bottom-0 w-[420px] hidden md:block"
-          style={{
-            opacity: 0.2,
-            maskImage: "linear-gradient(to right, transparent 0%, black 50%)",
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 50%)",
-          }}
-        >
-          <HeroIllustration />
-        </div>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1fr,400px] gap-10 lg:gap-14 items-center">
 
-        <div className="relative z-10 max-w-xl">
-          <p className="hero-animate text-xs font-semibold tracking-widest uppercase mb-5"
-            style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-            Meer tijd voor wat telt
-          </p>
-          <h1 className="hero-animate-d1 text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-tight mb-5"
-            style={{ color: "#1E2D3D" }}>
-            Het digitale kookboek<br />voor je dagelijkse leven
-          </h1>
-          <p className="hero-animate-d2 text-base md:text-lg leading-relaxed mb-4"
-            style={{ color: "#6C7B8B" }}>
-            Gedreven door mijn passie voor AI help ik je om slimme technologie tastbaar te maken in je dagelijks leven. Geen ingewikkelde theorie, maar praktische{" "}
-            <strong style={{ color: "#2C5A85", fontWeight: 600 }}>AI-fixes</strong>{" "}
-            die direct voor je werken.
-          </p>
-          <div className="hero-animate-d3 flex flex-col sm:flex-row items-start gap-3 mt-8">
-            <Link href="/blog"
-              className="inline-flex items-center justify-center text-white px-6 py-3 rounded-full text-sm font-medium transition-colors bg-[#2C5A85] hover:bg-[#1A3A57]">
-              Bekijk alle AI-Fixes
-            </Link>
-            <Link href="/#nieuwsbrief"
-              className="inline-flex items-center justify-center bg-white border border-[#CDD3D9] text-[#6C7B8B] px-6 py-3 rounded-full text-sm font-medium hover:border-[#2C5A85] hover:text-[#2C5A85] transition-colors">
-              Nieuwsbrief ontvangen
-            </Link>
+          {/* Links: tekst */}
+          <div>
+            <p className="hero-animate text-xs font-semibold tracking-widest uppercase mb-5"
+              style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
+              Meer tijd voor wat telt
+            </p>
+            <h1 className="hero-animate-d1 text-3xl sm:text-4xl md:text-[2.75rem] font-semibold leading-tight mb-5"
+              style={{ color: "#1E2D3D" }}>
+              Bespaar uren per week<br />met AI die voor jou werkt
+            </h1>
+
+            {/* Stat badges */}
+            <div className="hero-animate-d2 flex flex-wrap gap-2 mb-6">
+              {["25 AI-fixes", "Geen technische kennis", "Direct toepasbaar"].map((s) => (
+                <span key={s}
+                  className="inline-flex items-center text-xs font-medium px-3 py-1.5 rounded-full"
+                  style={{
+                    backgroundColor: "rgba(44,90,133,0.08)",
+                    color: "#2C5A85",
+                    border: "1px solid rgba(44,90,133,0.15)",
+                  }}>
+                  {s}
+                </span>
+              ))}
+            </div>
+
+            <p className="hero-animate-d2 text-base md:text-lg leading-relaxed mb-8"
+              style={{ color: "#6C7B8B" }}>
+              Praktische{" "}
+              <strong style={{ color: "#2C5A85", fontWeight: 600 }}>AI-fixes</strong>{" "}
+              voor e-mail, financiën, carrière en meer. Stap voor stap uitgelegd, zonder technische kennis.
+            </p>
+
+            <div className="hero-animate-d3 flex flex-col sm:flex-row items-start gap-3">
+              <Link href="/blog"
+                className="inline-flex items-center justify-center text-white px-6 py-3 rounded-full text-sm font-medium transition-colors bg-[#2C5A85] hover:bg-[#1A3A57]">
+                Kies jouw eerste AI-Fix
+              </Link>
+              <Link href="/#nieuwsbrief"
+                className="inline-flex items-center justify-center bg-white border border-[#CDD3D9] text-[#6C7B8B] px-6 py-3 rounded-full text-sm font-medium hover:border-[#2C5A85] hover:text-[#2C5A85] transition-colors">
+                Elke week een AI-tip
+              </Link>
+            </div>
+          </div>
+
+          {/* Rechts: uitgelichte fix — meteen zichtbaar */}
+          <div className="hero-animate-d4 relative">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              style={{
+                background: `radial-gradient(ellipse at 50% 60%, ${featured?.color || "#2C5A85"}28 0%, transparent 70%)`,
+                filter: "blur(28px)",
+                transform: "scale(1.12)",
+              }}
+            />
+            <div className="relative">
+              {featured && <ReceptCard post={featured} />}
+            </div>
           </div>
         </div>
+
+        <ScrollIndicator />
       </section>
 
-      {/* Uitgelicht */}
-      <section className="pb-16">
-        <FadeInUp>
-          <p className="text-xs font-semibold tracking-widest uppercase mb-8"
+      {/* ── Categorieën ───────────────────────────────────────── */}
+      <FadeInUp>
+        <section className="py-10" style={{ borderTop: "1px solid #E2E6EA" }}>
+          <p className="text-xs font-semibold tracking-widest uppercase mb-5"
             style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-            Uitgelicht
+            Verken per onderwerp
           </p>
-        </FadeInUp>
-        <FadeInUp delay={100}>
-          <ReceptCard post={featured} wide />
-        </FadeInUp>
-      </section>
+          <div className="flex flex-wrap gap-2">
+            {CATEGORIES.map((cat) => (
+              <Link
+                key={cat.label}
+                href={`/blog?cat=${encodeURIComponent(cat.label)}`}
+                className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full transition-all hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: "#FFFFFF",
+                  border: "1px solid #E2E6EA",
+                  color: "#1E2D3D",
+                  boxShadow: `inset 3px 0 0 ${cat.color}`,
+                }}
+              >
+                <span>{cat.icon}</span>
+                {cat.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+      </FadeInUp>
 
-      {/* Nieuwste AI-Fixes */}
+      {/* ── Nieuwste AI-Fixes ─────────────────────────────────── */}
       <section className="pb-20">
         <FadeInUp>
           <div className="flex items-center justify-between mb-8">
@@ -98,7 +147,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Drie pijlers (full-width) ─────────────────────────── */}
+      {/* ── Drie pijlers ─────────────────────────────────────── */}
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-20">
         {[
           {
@@ -132,7 +181,7 @@ export default async function HomePage() {
         ))}
       </section>
 
-      {/* ── Nieuwsbrief (full-width) ──────────────────────────── */}
+      {/* ── Nieuwsbrief ──────────────────────────────────────── */}
       <FadeInUp>
         <section id="nieuwsbrief" className="pb-24">
           <NewsletterForm />

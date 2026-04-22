@@ -18,10 +18,14 @@ export default function FilteredPosts({ posts }) {
   const [filter, setFilter] = useState("Alles");
   const [query, setQuery] = useState("");
 
-  // Laad zoekopdracht uit URL bij mount
+  // Laad zoekopdracht en categorie uit URL bij mount
   useEffect(() => {
     const q = searchParams.get("q") || "";
+    const cat = searchParams.get("cat") || "";
     setQuery(q);
+    if (cat && CATEGORIES.some((c) => c.label === cat)) {
+      setFilter(cat);
+    }
   }, [searchParams]);
 
   const filtered = posts.filter((p) => {
