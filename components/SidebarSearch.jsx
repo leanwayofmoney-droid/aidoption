@@ -27,26 +27,25 @@ export default function SidebarSearch() {
       >
         Zoeken
       </p>
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="relative">
         <input
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Zoek een AI-fix..."
           aria-label="Zoek een AI-fix"
-          className="flex-1 text-sm px-3 py-2 rounded-lg focus:outline-none focus:ring-2"
+          className="w-full text-sm pl-3 pr-10 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2C5A85]"
           style={{
             border: "1px solid #E2E6EA",
             backgroundColor: "#F8F9FA",
             color: "#1E2D3D",
-            focusRingColor: "#2C5A85",
           }}
         />
         <button
           type="submit"
           aria-label="Zoeken"
-          className="px-3 py-2 rounded-lg transition-colors"
-          style={{ backgroundColor: "#2C5A85", color: "#FFFFFF" }}
+          className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded transition-colors"
+          style={{ color: "#2C5A85" }}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

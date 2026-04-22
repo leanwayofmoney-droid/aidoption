@@ -109,13 +109,10 @@ export default function StarRating({ slug }) {
         </p>
       )}
 
-      {/* Gemiddelde */}
+      {/* Gemiddelde — zonder stemtelling */}
       {!loading && count > 0 && (
-        <p className="text-xs mt-2" style={{ color: "#6C7B8B" }}>
-          <span className="font-semibold" style={{ color: "#F59E0B" }}>
-            ★ {displayAvg}
-          </span>{" "}
-          · {count} stem{count !== 1 ? "men" : ""}
+        <p className="text-xs mt-2" style={{ color: "#F59E0B" }}>
+          <span className="font-semibold">★ {displayAvg}</span>
         </p>
       )}
     </div>
