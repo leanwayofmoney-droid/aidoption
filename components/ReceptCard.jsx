@@ -104,7 +104,14 @@ export default function ReceptCard({ post, wide = false }) {
 
           <div className="flex items-center justify-between mt-4 pt-4"
             style={{ borderTop: "1px solid #F1F3F5" }}>
-            <span className="text-xs" style={{ color: "#9BA8B5" }}>{post.readTime} lezen</span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs" style={{ color: "#9BA8B5" }}>{post.readTime} lezen</span>
+              {post.categorie && (
+                <span className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#F0F4F8", color: "#6C7B8B" }}>
+                  {post.categorie}
+                </span>
+              )}
+            </div>
             <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-150"
               style={{ color: c }}>
               Bekijk AI-Fix →

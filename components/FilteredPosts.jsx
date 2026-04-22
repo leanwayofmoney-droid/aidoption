@@ -3,7 +3,14 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import ReceptCard from "./ReceptCard";
 
-const TOOLS = ["Alles", "Claude", "ChatGPT"];
+const CATEGORIES = [
+  { label: "Alles",            icon: "✦"  },
+  { label: "De Snelle Hap",    icon: "🍴" },
+  { label: "Het Hoofdgerecht", icon: "🍽️" },
+  { label: "De Huishoudpot",   icon: "🏠" },
+  { label: "Het Dagmenu",      icon: "📅" },
+  { label: "Slow Cooking",     icon: "🌱" },
+];
 
 export default function FilteredPosts({ posts }) {
   const searchParams = useSearchParams();
@@ -18,12 +25,12 @@ export default function FilteredPosts({ posts }) {
   }, [searchParams]);
 
   const filtered = posts.filter((p) => {
-    const matchTool = filter === "Alles" || p.tool?.includes(filter);
+    const matchCat = filter === "Alles" || p.categorie === filter;
     const matchQuery =
       query.trim() === "" ||
       p.title?.toLowerCase().includes(query.toLowerCase()) ||
       p.excerpt?.toLowerCase().includes(query.toLowerCase());
-    return matchTool && matchQuery;
+    return matchCat && matchQuery;
   });
 
   const [featured, ...rest] = filtered;
@@ -80,22 +87,23 @@ export default function FilteredPosts({ posts }) {
         </button>
       </form>
 
-      {/* Filter pills */}
+      {/* Categorie pills */}
       <div className="flex gap-2 mb-8 flex-wrap">
-        {TOOLS.map((tool) => {
-          const active = filter === tool;
+        {CATEGORIES.map(({ label, icon }) => {
+          const active = filter === label;
           return (
             <button
-              key={tool}
-              onClick={() => setFilter(tool)}
-              className="text-xs font-semibold px-4 py-1.5 rounded-full transition-colors"
+              key={label}
+              onClick={() => setFilter(label)}
+              className="text-xs font-semibold px-4 py-1.5 rounded-full transition-colors flex items-center gap-1.5"
               style={{
                 backgroundColor: active ? "#2C5A85" : "#F0F4F8",
                 color: active ? "#FFFFFF" : "#6C7B8B",
                 border: active ? "1px solid #2C5A85" : "1px solid #E2E6EA",
               }}
             >
-              {tool}
+              <span>{icon}</span>
+              <span>{label}</span>
             </button>
           );
         })}
