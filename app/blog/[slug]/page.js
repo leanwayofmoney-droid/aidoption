@@ -9,6 +9,8 @@ import Sidebar from "../../../components/Sidebar";
 import StarRating from "../../../components/StarRating";
 import SidebarTopFixes from "../../../components/SidebarTopFixes";
 
+export const revalidate = 3600; // herlaad Notion-data elk uur
+
 export async function generateStaticParams() {
   const posts = await getPosts();
   return posts.map((p) => ({ slug: p.slug }));
@@ -226,97 +228,128 @@ export default async function AIFixPage({ params }) {
 
           {/* Blok 1: Curiosity Header */}
           <section className="pt-10 pb-8">
-            <p className="text-xs font-semibold tracking-widest uppercase mb-4"
-              style={{ color: c, letterSpacing: "0.16em" }}>
-              De kern
-            </p>
-            <h2 className="text-2xl md:text-3xl font-semibold leading-tight" style={{ color: "#1E2D3D" }}>
-              {post.curiosityHeader}
-            </h2>
+            <div className="flex items-start gap-4">
+              <span className="section-nr">01</span>
+              <div>
+                <p className="text-xs font-semibold tracking-widest uppercase mb-4"
+                  style={{ color: c, letterSpacing: "0.16em" }}>
+                  De kern
+                </p>
+                <h2 className="text-2xl md:text-3xl font-semibold leading-tight" style={{ color: "#1E2D3D" }}>
+                  {post.curiosityHeader}
+                </h2>
+              </div>
+            </div>
           </section>
 
           {/* Blok 2: Persoonlijke Missie */}
           <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
-            <p className="text-xs font-semibold tracking-widest uppercase mb-4"
-              style={{ color: c, letterSpacing: "0.16em" }}>
-              Waarom dit mij irriteerde
-            </p>
-            <div className="text-base leading-relaxed" style={{ color: "#4A5568" }}>
-              {renderBold(post.persoonlijkeMissie)}
+            <div className="flex items-start gap-4">
+              <span className="section-nr">02</span>
+              <div className="flex-1">
+                <p className="text-xs font-semibold tracking-widest uppercase mb-4"
+                  style={{ color: c, letterSpacing: "0.16em" }}>
+                  Waarom dit mij irriteerde
+                </p>
+                <div className="text-base leading-relaxed" style={{ color: "#4A5568" }}>
+                  {renderBold(post.persoonlijkeMissie)}
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Blok 3: Transformatie */}
           <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
-            <p className="text-xs font-semibold tracking-widest uppercase mb-5"
-              style={{ color: c, letterSpacing: "0.16em" }}>
-              De transformatie
-            </p>
-            <div className="rounded-xl p-5 space-y-4" style={{ backgroundColor: "#F0F4F8", border: "1px solid #E2E6EA" }}>
-              {renderParagraphs(post.transformatie, "#1E2D3D")}
+            <div className="flex items-start gap-4">
+              <span className="section-nr">03</span>
+              <div className="flex-1">
+                <p className="text-xs font-semibold tracking-widest uppercase mb-5"
+                  style={{ color: c, letterSpacing: "0.16em" }}>
+                  De transformatie
+                </p>
+                <div className="rounded-xl p-5 space-y-4"
+                  style={{ backgroundColor: "#F0F4F8", border: "1px solid #E2E6EA", borderLeft: `3px solid ${c}` }}>
+                  {renderParagraphs(post.transformatie, "#1E2D3D")}
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Blok 4: De AI-Logica */}
           <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
-            <p className="text-xs font-semibold tracking-widest uppercase mb-5"
-              style={{ color: c, letterSpacing: "0.16em" }}>
-              De AI-logica
-            </p>
-            <div className="space-y-1">
-              {renderParagraphs(post.strategischeLogica, "#4A5568")}
+            <div className="flex items-start gap-4">
+              <span className="section-nr">04</span>
+              <div className="flex-1">
+                <p className="text-xs font-semibold tracking-widest uppercase mb-5"
+                  style={{ color: c, letterSpacing: "0.16em" }}>
+                  De AI-logica
+                </p>
+                <div className="space-y-1">
+                  {renderParagraphs(post.strategischeLogica, "#4A5568")}
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Het Codeboek — teaser */}
           <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
-            <p className="text-xs font-semibold tracking-widest uppercase mb-5"
-              style={{ color: c, letterSpacing: "0.16em" }}>
-              Het Codeboek
-            </p>
-            <div className="rounded-xl p-6" style={{ backgroundColor: "#1E2D3D" }}>
-              <p className="text-sm font-medium mb-1" style={{ color: "#9BBCD8" }}>
-                De exacte prompt
-              </p>
-              <p className="text-base font-semibold mb-4" style={{ color: "#FFFFFF" }}>
-                Klaar om te kopiëren en plakken
-              </p>
-              <p className="text-sm leading-relaxed mb-5" style={{ color: "#6C7B8B" }}>
-                De volledige prompt die ik gebruik staat in Het Codeboek, inclusief de exacte instructies,
-                variabelen en tips voor betere output. Schrijf je in voor de nieuwsbrief en ontvang hem direct.
-              </p>
-              <a
-                href="#nieuwsbrief"
-                className="inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-full transition-colors"
-                style={{ backgroundColor: "#2C5A85", color: "#FFFFFF" }}
-              >
-                Ontvang Het Codeboek
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
+            <div className="flex items-start gap-4">
+              <span className="section-nr">05</span>
+              <div className="flex-1">
+                <p className="text-xs font-semibold tracking-widest uppercase mb-5"
+                  style={{ color: c, letterSpacing: "0.16em" }}>
+                  Het Codeboek
+                </p>
+                <div className="grain rounded-xl p-6 overflow-hidden" style={{ backgroundColor: "#1E2D3D" }}>
+                  <p className="text-sm font-medium mb-1" style={{ color: "#9BBCD8" }}>
+                    De exacte prompt
+                  </p>
+                  <p className="text-base font-semibold mb-4" style={{ color: "#FFFFFF" }}>
+                    Klaar om te kopiëren en plakken
+                  </p>
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: "#9BA8B5" }}>
+                    De volledige prompt die ik gebruik staat in Het Codeboek, inclusief de exacte instructies,
+                    variabelen en tips voor betere output. Schrijf je in voor de nieuwsbrief en ontvang hem direct.
+                  </p>
+                  <a
+                    href="#nieuwsbrief"
+                    className="pulse inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-full transition-colors"
+                    style={{ backgroundColor: "#C8813F", color: "#FFFFFF" }}
+                  >
+                    Ontvang Het Codeboek
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Blok 5: De Nuance */}
           <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
-            <div className="flex gap-4 rounded-xl p-5"
-              style={{ backgroundColor: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)" }}>
-              <div className="flex-shrink-0 mt-0.5">
-                <svg className="w-4 h-4" fill="none" stroke="#EF4444" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest mb-2"
-                  style={{ color: "#EF4444", letterSpacing: "0.12em" }}>
-                  Wanneer werkt dit niet
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "#4A5568" }}>
-                  {renderBold(post.nuance)}
-                </p>
+            <div className="flex items-start gap-4">
+              <span className="section-nr" style={{ color: "#EF4444" }}>06</span>
+              <div className="flex-1">
+                <div className="flex gap-4 rounded-xl p-5"
+                  style={{ backgroundColor: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                  <div className="flex-shrink-0 mt-0.5">
+                    <svg className="w-4 h-4" fill="none" stroke="#EF4444" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest mb-2"
+                      style={{ color: "#EF4444", letterSpacing: "0.12em" }}>
+                      Wanneer werkt dit niet
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "#4A5568" }}>
+                      {renderBold(post.nuance)}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>

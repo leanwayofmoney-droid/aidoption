@@ -7,6 +7,8 @@ import HeroTop3 from "../components/HeroTop3";
 import { getPosts } from "../lib/notion";
 import { getTopFixes } from "../lib/ratings";
 
+export const revalidate = 1800; // herlaad Notion-data elke 30 min
+
 const CATEGORIES = [
   { label: "Communicatie",        icon: "💬", color: "#2C5A85" },
   { label: "Carrière",            icon: "💼", color: "#6B46C1" },
@@ -29,7 +31,7 @@ export default async function HomePage() {
   return (
     <>
       {/* ── Hero — eigen full-width achtergrond ───────────────── */}
-      <div style={{ backgroundColor: "#F9F6F2", borderBottom: "1px solid #EDE6DC" }}>
+      <div className="grain" style={{ backgroundColor: "#F9F6F2", borderBottom: "1px solid #EDE6DC" }}>
         <div className="max-w-6xl mx-auto px-6">
           <section className="relative pt-10 md:pt-14 pb-12 overflow-hidden">
 
