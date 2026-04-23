@@ -68,12 +68,27 @@ function renderParagraphs(text, color = "#4A5568") {
   ));
 }
 
+// Pillar page per categorie — voor "volgende stap" interne link
+const PILLAR_MAP = {
+  "Communicatie":     { href: "/ai-prompts-schrijven",   title: "Betere AI-prompts schrijven",  desc: "Schrijf prompts die precies geven wat je nodig hebt." },
+  "Carrière":         { href: "/chatgpt-voor-beginners", title: "ChatGPT voor beginners",        desc: "Alles wat je nodig hebt om ChatGPT effectief te gebruiken." },
+  "Financiën":        { href: "/ai-voor-beginners",      title: "AI voor beginners",             desc: "Ontdek hoe AI je dagelijks leven eenvoudiger maakt." },
+  "Dagelijks Leven":  { href: "/ai-voor-beginners",      title: "AI voor beginners",             desc: "De complete introductie in AI zonder technische kennis." },
+  "Persoonlijke Groei": { href: "/ai-voor-beginners",   title: "AI voor beginners",             desc: "Beginnen met AI: alles wat je moet weten." },
+};
+
 export default async function AIFixPage({ params }) {
   const post = await getPostBySlug(params.slug);
   if (!post) notFound();
 
   const allPosts = await getPosts();
-  const related = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
+
+  // Smart related: zelfde categorie eerst, daarna anderen — altijd 3 artikelen
+  const sameCat  = allPosts.filter((p) => p.slug !== post.slug && p.categorie === post.categorie);
+  const otherCat = allPosts.filter((p) => p.slug !== post.slug && p.categorie !== post.categorie);
+  const related  = [...sameCat, ...otherCat].slice(0, 3);
+
+  const pillar = PILLAR_MAP[post.categorie] || null;
   const c = post.color || "#2C5A85";
 
   return (
@@ -388,15 +403,49 @@ export default async function AIFixPage({ params }) {
 
       {/* ── Meer AI-Fixes (full-width) ───────────────────────────── */}
       <section className="py-16" style={{ borderTop: "1px solid #E2E6EA" }}>
-        <p className="text-xs font-semibold tracking-widest uppercase mb-8"
-          style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
-          Meer AI-Fixes
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="flex items-center justify-between mb-8">
+          <p className="eyebrow">
+            {post.categorie ? `Meer in ${post.categorie}` : "Meer AI-Fixes"}
+          </p>
+          {post.categorie && (
+            <Link
+              href={`/blog?cat=${encodeURIComponent(post.categorie)}`}
+              className="text-sm transition-colors hover:underline"
+              style={{ color: "#6C7B8B" }}
+            >
+              Alle {post.categorie}-fixes →
+            </Link>
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {related.map((p) => (
             <ReceptCard key={p.slug} post={p} />
           ))}
         </div>
+
+        {/* Volgende stap: pillar page link */}
+        {pillar && (
+          <div className="mt-8">
+            <Link
+              href={pillar.href}
+              className="group flex items-center justify-between rounded-xl p-5 transition-all hover:-translate-y-0.5"
+              style={{ backgroundColor: "#FFFFFF", border: "1px solid #E2E6EA", boxShadow: "inset 4px 0 0 #C8813F" }}
+            >
+              <div>
+                <p className="text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "#C8813F", letterSpacing: "0.16em" }}>
+                  Volgende stap
+                </p>
+                <p className="font-semibold text-sm mb-0.5" style={{ color: "#1E2D3D" }}>{pillar.title}</p>
+                <p className="text-xs" style={{ color: "#6C7B8B" }}>{pillar.desc}</p>
+              </div>
+              <svg className="w-5 h-5 flex-shrink-0 ml-4 transition-transform group-hover:translate-x-1"
+                fill="none" stroke="#C8813F" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 18l6-6-6-6" />
+              </svg>
+            </Link>
+          </div>
+        )}
       </section>
 
       {/* ── Newsletter (full-width) ──────────────────────────────── */}
