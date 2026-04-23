@@ -88,35 +88,54 @@ export default async function AIFixPage({ params }) {
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",
-                "@type": "HowTo",
-                name: post.title,
-                description: post.excerpt,
-                image: post.image,
-                estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "0" },
-                totalTime: `PT${post.savingsPerTask}M`,
-                tool: [{ "@type": "HowToTool", name: post.tool }],
-                step: [
+                "@graph": [
                   {
-                    "@type": "HowToStep",
-                    name: "Begrijp de aanpak",
-                    text: post.persoonlijkeMissie?.replace(/\*\*/g, ""),
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                      { "@type": "ListItem", position: 1, name: "Home",      item: `${BASE}` },
+                      { "@type": "ListItem", position: 2, name: "AI-Fixes",  item: `${BASE}/blog` },
+                      { "@type": "ListItem", position: 3, name: post.title,  item: `${BASE}/blog/${post.slug}` },
+                    ],
                   },
                   {
-                    "@type": "HowToStep",
-                    name: "De transformatie",
-                    text: post.transformatie?.replace(/\*\*/g, ""),
-                  },
-                  {
-                    "@type": "HowToStep",
-                    name: "De AI-logica",
-                    text: post.strategischeLogica?.replace(/\*\*/g, ""),
+                    "@type": "HowTo",
+                    name: post.title,
+                    description: post.excerpt,
+                    image: post.image,
+                    datePublished: post.date,
+                    inLanguage: "nl",
+                    author: {
+                      "@type": "Person",
+                      name: "Stefan",
+                      url: `${BASE}/over`,
+                    },
+                    publisher: {
+                      "@type": "Organization",
+                      name: "AIdoption",
+                      url: BASE,
+                    },
+                    estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "0" },
+                    totalTime: `PT${post.savingsPerTask}M`,
+                    tool: [{ "@type": "HowToTool", name: post.tool }],
+                    step: [
+                      {
+                        "@type": "HowToStep",
+                        name: "Begrijp de aanpak",
+                        text: post.persoonlijkeMissie?.replace(/\*\*/g, ""),
+                      },
+                      {
+                        "@type": "HowToStep",
+                        name: "De transformatie",
+                        text: post.transformatie?.replace(/\*\*/g, ""),
+                      },
+                      {
+                        "@type": "HowToStep",
+                        name: "De AI-logica",
+                        text: post.strategischeLogica?.replace(/\*\*/g, ""),
+                      },
+                    ],
                   },
                 ],
-                publisher: {
-                  "@type": "Organization",
-                  name: "AIdoption",
-                  url: "https://ai-doption.nl",
-                },
               }),
             }}
           />
