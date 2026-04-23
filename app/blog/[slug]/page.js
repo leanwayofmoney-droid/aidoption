@@ -8,6 +8,7 @@ import ReceptCard from "../../../components/ReceptCard";
 import Sidebar from "../../../components/Sidebar";
 import StarRating from "../../../components/StarRating";
 import SidebarTopFixes from "../../../components/SidebarTopFixes";
+import ReadingProgress from "../../../components/ReadingProgress";
 
 export const revalidate = 3600; // herlaad Notion-data elk uur
 
@@ -93,6 +94,7 @@ export default async function AIFixPage({ params }) {
 
   return (
     <div className="max-w-5xl mx-auto px-6">
+      <ReadingProgress color={c} />
 
       {/* ── Hoofd-grid: artikel + sidebar ─────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12 items-start">
