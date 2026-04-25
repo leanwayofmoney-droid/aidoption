@@ -23,24 +23,35 @@ export async function generateMetadata({ params }) {
   const post = await getPostBySlug(params.slug);
   if (!post) return {};
   const url = `${BASE}/blog/${post.slug}`;
+
+  // Click-optimized meta description: concrete tijdsbesparing + belofte van kant-en-klare prompt
+  const metaDesc = post.excerpt
+    ? `${post.excerpt.replace(/\.$/, "")}. Bespaart ${post.savingsPerTask} min ${post.frequentieLabel} — inclusief kant-en-klare AI-prompt.`.slice(0, 155)
+    : `Leer hoe je ${post.title.toLowerCase()} met AI. Bespaar ${post.savingsPerTask} minuten ${post.frequentieLabel} met een kant-en-klare prompt. Geen technische kennis nodig.`.slice(0, 155);
+
+  // Click-optimized title: voeg tijdsbesparing toe als die past binnen 60 tekens
+  const baseTitle = post.title;
+  const titleWithSavings = `${baseTitle} (${post.savingsPerTask} min bespaard)`;
+  const metaTitle = titleWithSavings.length <= 60 ? titleWithSavings : baseTitle;
+
   return {
-    title: post.title,
-    description: post.excerpt,
-    keywords: [post.tool, "AI-fix", "AI tips", "AI productiviteit", "ChatGPT", "Claude AI"],
+    title: metaTitle,
+    description: metaDesc,
+    keywords: [post.tool, post.categorie, "AI-fix", "AI tips", "AI productiviteit", "ChatGPT Nederlands", "Claude AI"].filter(Boolean),
     alternates: { canonical: url },
     openGraph: {
       type: "article",
       url,
-      title: post.title,
-      description: post.excerpt,
+      title: metaTitle,
+      description: metaDesc,
       publishedTime: post.date,
       authors: [`${BASE}/over`],
       images: [{ url: post.image, width: 800, height: 533, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
+      title: metaTitle,
+      description: metaDesc,
       images: [post.image],
     },
   };
