@@ -92,6 +92,30 @@ export default async function AIFixPage({ params }) {
   const pillar = PILLAR_MAP[post.categorie] || null;
   const c = post.color || "#2C5A85";
 
+  // Stap voor stap: één stap per regel
+  const stappen = post.stapVoorStap
+    ? post.stapVoorStap.split("\n").map((s) => s.trim()).filter(Boolean)
+    : [];
+
+  // Variaties: "Titel||Beschrijving" per regel
+  const variaties = post.variaties
+    ? post.variaties.split("\n").map((r) => {
+        const [titel, beschrijving] = r.split("||").map((s) => s.trim());
+        return titel && beschrijving ? { titel, beschrijving } : null;
+      }).filter(Boolean)
+    : [];
+
+  // FAQ: "Q: vraag\nA: antwoord" blokken gescheiden door lege regel
+  const faqItems = post.faq
+    ? post.faq.split(/\n\s*\n/).map((blok) => {
+        const qMatch = blok.match(/^Q:\s*(.+)/m);
+        const aMatch = blok.match(/^A:\s*(.+)/ms);
+        return qMatch && aMatch
+          ? { q: qMatch[1].trim(), a: aMatch[1].trim() }
+          : null;
+      }).filter(Boolean)
+    : [];
+
   return (
     <div className="max-w-5xl mx-auto px-6">
       <ReadingProgress color={c} />
@@ -288,6 +312,50 @@ export default async function AIFixPage({ params }) {
             </div>
           </section>
 
+          {/* Blok 4b: Stap voor stap — optioneel */}
+          {stappen.length > 0 && (
+            <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
+              <p className="text-xs font-semibold tracking-widest uppercase mb-6"
+                style={{ color: c, letterSpacing: "0.16em" }}>
+                Zo doe je het
+              </p>
+              <ol className="space-y-4">
+                {stappen.map((stap, i) => (
+                  <li key={i} className="flex gap-4">
+                    <span
+                      className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
+                      style={{ backgroundColor: `${c}18`, color: c }}
+                    >
+                      {i + 1}
+                    </span>
+                    <p className="text-base leading-relaxed pt-0.5" style={{ color: "#4A5568" }}>
+                      {renderBold(stap)}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          {/* Blok 4c: Slimme variaties — optioneel */}
+          {variaties.length > 0 && (
+            <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
+              <p className="text-xs font-semibold tracking-widest uppercase mb-6"
+                style={{ color: c, letterSpacing: "0.16em" }}>
+                Slimme variaties
+              </p>
+              <div className="space-y-3">
+                {variaties.map((v, i) => (
+                  <div key={i} className="rounded-xl p-4"
+                    style={{ border: "1px solid #E2E6EA", borderLeft: `3px solid ${c}`, backgroundColor: "#FFFFFF" }}>
+                    <p className="font-semibold text-sm mb-1" style={{ color: "#1E2D3D" }}>{v.titel}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "#6C7B8B" }}>{renderBold(v.beschrijving)}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Het Codeboek — teaser */}
           <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
             <p className="text-xs font-semibold tracking-widest uppercase mb-5"
@@ -340,6 +408,43 @@ export default async function AIFixPage({ params }) {
               </div>
             </div>
           </section>
+
+          {/* FAQ — optioneel + FAQPage schema */}
+          {faqItems.length > 0 && (
+            <section className="py-8" style={{ borderTop: "1px solid #E2E6EA" }}>
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    mainEntity: faqItems.map((item) => ({
+                      "@type": "Question",
+                      name: item.q,
+                      acceptedAnswer: { "@type": "Answer", text: item.a },
+                    })),
+                  }),
+                }}
+              />
+              <p className="text-xs font-semibold tracking-widest uppercase mb-6"
+                style={{ color: c, letterSpacing: "0.16em" }}>
+                Veelgestelde vragen
+              </p>
+              <div className="space-y-3">
+                {faqItems.map((item, i) => (
+                  <div key={i} className="rounded-xl p-5"
+                    style={{ border: "1px solid #E2E6EA", backgroundColor: "#FFFFFF" }}>
+                    <p className="font-semibold text-sm mb-2" style={{ color: "#1E2D3D" }}>
+                      {item.q}
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "#6C7B8B" }}>
+                      {renderBold(item.a)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Blok 6: Impact & CTA + WinstSlider */}
           <section style={{ borderTop: "1px solid #E2E6EA" }}>
