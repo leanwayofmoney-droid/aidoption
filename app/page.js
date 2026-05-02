@@ -45,7 +45,7 @@ export default async function HomePage() {
 
               {/* Links: tekst */}
               <div className="pt-4">
-                <p className="eyebrow hero-animate mb-5">Meer tijd voor wat telt</p>
+                <p className="eyebrow hero-animate mb-5">Beter en sneller door te werken met AI</p>
                 <h1 className="hero-animate-d1 text-[2rem] sm:text-[2.4rem] md:text-[2.5rem] font-semibold mb-6"
                   style={{ color: "#1E2D3D", letterSpacing: "-0.025em", lineHeight: 1.12 }}>
                   Bespaar uren per week<br className="hidden sm:block" /> met AI die voor jou werkt
