@@ -29,11 +29,13 @@ const jsonLd = {
   inLanguage: "nl-NL",
 };
 
+export const revalidate = 3600;
+
 export default async function ChatGPTVoorBeginnersPage() {
   const posts = await getPosts();
   const gerelateerd = posts
-    .filter((p) => ["email-inbox-samenvatten", "cv-en-sollicitatiebrief", "maandbudget-opstellen", "vergadering-samenvatten"].includes(p.slug))
-    .slice(0, 4);
+    .filter((p) => p.categorie === "Carrière")
+    .slice(0, 6);
 
   return (
     <div className="max-w-5xl mx-auto px-6">
@@ -213,7 +215,7 @@ export default async function ChatGPTVoorBeginnersPage() {
             style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
             Zet ChatGPT direct aan het werk
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {gerelateerd.map((p) => <ReceptCard key={p.slug} post={p} />)}
           </div>
         </section>

@@ -35,13 +35,13 @@ const jsonLd = {
   ],
 };
 
+export const revalidate = 3600;
+
 export default async function AiPromptsSchrijvenPage() {
   const posts = await getPosts();
   const gerelateerd = posts
-    .filter((p) =>
-      ["email-inbox-samenvatten", "vergadering-samenvatten", "cv-en-sollicitatiebrief", "maandbudget-opstellen"].includes(p.slug)
-    )
-    .slice(0, 4);
+    .filter((p) => p.categorie === "Communicatie")
+    .slice(0, 6);
 
   return (
     <div className="max-w-5xl mx-auto px-6">
@@ -274,7 +274,7 @@ export default async function AiPromptsSchrijvenPage() {
             style={{ color: "#2C5A85", letterSpacing: "0.18em" }}>
             Oefen direct met een AI-fix
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {gerelateerd.map((p) => <ReceptCard key={p.slug} post={p} />)}
           </div>
         </section>
