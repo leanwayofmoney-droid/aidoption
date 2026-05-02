@@ -4,7 +4,7 @@ import NewsletterForm from "../../components/NewsletterForm";
 const BASE = "https://ai-doption.nl";
 
 export const metadata = {
-  title: "AI-cursus — Binnenkort beschikbaar | AIdoption",
+  title: "AI-cursus | Binnenkort beschikbaar | AIdoption",
   description: "Een praktische AI-cursus voor mensen zonder technische kennis. Schrijf je in voor de nieuwsbrief en ontvang een melding zodra de cursus live gaat.",
   alternates: { canonical: `${BASE}/cursus` },
   robots: { index: false },
@@ -50,7 +50,7 @@ export default function CursusPage() {
             {[
               { icon: "⚡", titel: "Praktisch van dag één", tekst: "Geen theorie. Elke les is direct toepasbaar op jouw werk." },
               { icon: "🎯", titel: "Op jouw niveau", tekst: "Begrijpelijk voor iedereen, ook zonder technische achtergrond." },
-              { icon: "🛠️", titel: "De beste tools", tekst: "ChatGPT, Claude en Gemini — wat wanneer te gebruiken." },
+              { icon: "🛠️", titel: "De beste tools", tekst: "ChatGPT, Claude en Gemini: wat wanneer te gebruiken." },
               { icon: "⏱️", titel: "Bespaar direct tijd", tekst: "Na de cursus gebruik je AI voor taken die nu uren kosten." },
             ].map((item) => (
               <div key={item.titel} className="flex items-start gap-4">

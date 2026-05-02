@@ -4,13 +4,13 @@ import NewsletterForm from "../../components/NewsletterForm";
 const BASE = "https://ai-doption.nl";
 
 export const metadata = {
-  title: "Over AIdoption — Praktische AI-hulp voor Nederlandstalige beginners",
+  title: "Over AIdoption | Praktische AI-hulp voor Nederlandstalige beginners",
   description: "AIdoption is gemaakt door Stefan. Geen technische handleidingen, maar praktische AI-fixes die je vandaag nog kunt gebruiken. Leer wie er achter het project zit.",
   alternates: { canonical: `${BASE}/over` },
   openGraph: {
     type: "profile",
     url: `${BASE}/over`,
-    title: "Over AIdoption — Wie zit er achter?",
+    title: "Over AIdoption | Wie zit er achter?",
     description: "Stefan maakt AI toegankelijk voor mensen zonder technische achtergrond. Praktisch, eerlijk en direct toepasbaar.",
     images: [{ url: "/og-default.png", width: 1200, height: 630 }],
   },
@@ -38,7 +38,7 @@ export default function OverPage() {
           </h1>
           <div className="space-y-4 text-base leading-relaxed" style={{ color: "#6C7B8B" }}>
             <p>
-              Ik ben Stefan. Ik werk fulltime en gebruik AI dagelijks om slimmer te werken — niet minder hard.
+              Ik ben Stefan. Ik werk fulltime en gebruik AI dagelijks om slimmer te werken, niet minder hard.
               AIdoption is mijn manier om te delen wat ik geleerd heb: welke tools werken, hoe je ze inzet
               en wat je er concreet mee bereikt.
             </p>
@@ -67,7 +67,7 @@ export default function OverPage() {
               },
               {
                 title: "Eerlijk over beperkingen",
-                desc: "Elke fix heeft een sectie 'Wanneer werkt dit niet'. AI is geen wondermiddel — ik vertel je wanneer het wel en niet de moeite waard is.",
+                desc: "Elke fix heeft een sectie 'Wanneer werkt dit niet'. AI is geen wondermiddel. Ik vertel je wanneer het wel en niet de moeite waard is.",
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-4">

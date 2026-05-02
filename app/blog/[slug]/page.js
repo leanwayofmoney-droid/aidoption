@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
 
   // Click-optimized meta description: concrete tijdsbesparing + belofte van kant-en-klare prompt
   const metaDesc = post.excerpt
-    ? `${post.excerpt.replace(/\.$/, "")}. Bespaart ${post.savingsPerTask} min ${post.frequentieLabel} — inclusief kant-en-klare AI-prompt.`.slice(0, 155)
+    ? `${post.excerpt.replace(/\.$/, "")}. Bespaart ${post.savingsPerTask} min ${post.frequentieLabel}. Inclusief kant-en-klare AI-prompt.`.slice(0, 155)
     : `Leer hoe je ${post.title.toLowerCase()} met AI. Bespaar ${post.savingsPerTask} minuten ${post.frequentieLabel} met een kant-en-klare prompt. Geen technische kennis nodig.`.slice(0, 155);
 
   // Click-optimized title: voeg tijdsbesparing toe als die past binnen 60 tekens

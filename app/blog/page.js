@@ -7,14 +7,14 @@ import { getPosts } from "../../lib/notion";
 export const revalidate = 3600; // herlaad Notion-data elk uur
 
 export const metadata = {
-  title: "AI-Tips voor dagelijkse taken — Praktische ChatGPT-fixes | AIdoption",
+  title: "AI-Tips voor dagelijkse taken | Praktische ChatGPT-fixes | AIdoption",
   description:
-    "Kant-en-klare AI-fixes voor e-mail, financiën, carrière en meer. Kopieer de prompt en bespaar direct tijd — geen technische kennis nodig.",
+    "Kant-en-klare AI-fixes voor e-mail, financiën, carrière en meer. Kopieer de prompt en bespaar direct tijd, geen technische kennis nodig.",
   alternates: { canonical: "https://ai-doption.nl/blog" },
   openGraph: {
     type: "website",
     url: "https://ai-doption.nl/blog",
-    title: "AI-Tips voor dagelijkse taken — AIdoption",
+    title: "AI-Tips voor dagelijkse taken | AIdoption",
     description: "Kant-en-klare AI-fixes voor e-mail, financiën, carrière en meer. Geen technische kennis nodig.",
     images: [{ url: "/og-default.png", width: 1200, height: 630 }],
   },
@@ -31,7 +31,7 @@ export default async function BlogPage() {
           AI-tips voor dagelijkse taken
         </h1>
         <p className="max-w-lg leading-relaxed" style={{ color: "#6C7B8B" }}>
-          Kant-en-klare AI-fixes voor e-mail, financiën, carrière en meer. Kopieer de prompt en bespaar direct tijd — zonder technische kennis.
+          Kant-en-klare AI-fixes voor e-mail, financiën, carrière en meer. Kopieer de prompt en bespaar direct tijd, zonder technische kennis.
         </p>
       </section>
 

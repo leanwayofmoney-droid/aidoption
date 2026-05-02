@@ -9,8 +9,8 @@ const BASE = "https://ai-doption.nl";
 export const metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "AIdoption — AI voor je dagelijkse leven",
-    template: "%s — AIdoption",
+    default: "AIdoption | AI voor je dagelijkse leven",
+    template: "%s | AIdoption",
   },
   description:
     "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd. Geen technische kennis nodig.",
@@ -27,7 +27,7 @@ export const metadata = {
     locale: "nl_NL",
     url: BASE,
     siteName: "AIdoption",
-    title: "AIdoption — AI voor je dagelijkse leven",
+    title: "AIdoption | AI voor je dagelijkse leven",
     description:
       "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd.",
     images: [
@@ -35,13 +35,13 @@ export const metadata = {
         url: "/og-default.png",
         width: 1200,
         height: 630,
-        alt: "AIdoption — Praktische AI-fixes",
+        alt: "AIdoption | Praktische AI-fixes",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIdoption — AI voor je dagelijkse leven",
+    title: "AIdoption | AI voor je dagelijkse leven",
     description:
       "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd.",
     images: ["/og-default.png"],
