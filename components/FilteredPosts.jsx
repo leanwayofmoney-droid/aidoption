@@ -122,11 +122,11 @@ export default function FilteredPosts({ posts }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {featured && (
             <div className="md:col-span-2">
-              <ReceptCard post={featured} wide />
+              <ReceptCard post={featured} wide isNew={featured.slug === posts[0]?.slug} />
             </div>
           )}
           {rest.map((post) => (
-            <ReceptCard key={post.slug} post={post} />
+            <ReceptCard key={post.slug} post={post} isNew={post.slug === posts[0]?.slug} />
           ))}
         </div>
       )}

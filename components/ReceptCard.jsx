@@ -3,7 +3,30 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function ReceptCard({ post, wide = false }) {
+function NieuwBadge() {
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full"
+      style={{
+        backgroundColor: "#22C55E",
+        color: "#FFFFFF",
+        letterSpacing: "0.04em",
+        boxShadow: "0 0 0 3px rgba(34,197,94,0.25)",
+      }}
+    >
+      <span
+        style={{
+          width: "6px", height: "6px", borderRadius: "50%",
+          backgroundColor: "#FFFFFF", display: "inline-block",
+          animation: "pulse 1.8s ease-in-out infinite",
+        }}
+      />
+      Nieuw
+    </span>
+  );
+}
+
+export default function ReceptCard({ post, wide = false, isNew = false }) {
   const c = post.color || "#2C5A85";
   const [hovered, setHovered] = useState(false);
 
@@ -45,6 +68,13 @@ export default function ReceptCard({ post, wide = false }) {
             }}>
               {post.savingsPerTask}
             </span>
+
+            {/* Nieuw badge — wide card */}
+            {isNew && (
+              <div className="absolute top-5 right-5">
+                <NieuwBadge />
+              </div>
+            )}
 
             {/* Content over image */}
             <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9">
@@ -101,6 +131,12 @@ export default function ReceptCard({ post, wide = false }) {
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
+          {/* Nieuw badge — small card */}
+          {isNew && (
+            <div className="absolute top-3 right-3">
+              <NieuwBadge />
+            </div>
+          )}
           {/* Savings badge over image */}
           <div className="absolute bottom-3 left-4">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full"
