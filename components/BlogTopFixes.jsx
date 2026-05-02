@@ -44,7 +44,7 @@ export default async function BlogTopFixes() {
               <p className="text-xs mt-1.5" style={{ color: "#F59E0B" }}>
                 {"★".repeat(Math.round(fix.avg))}
                 {"☆".repeat(5 - Math.round(fix.avg))}{" "}
-                <span style={{ color: "#9BA8B5" }}>{fix.avg.toFixed(1)} ({fix.count} stem{fix.count !== 1 ? "men" : ""})</span>
+                <span style={{ color: "#9BA8B5" }}>{fix.avg.toFixed(1)}</span>
               </p>
             </div>
           </Link>
