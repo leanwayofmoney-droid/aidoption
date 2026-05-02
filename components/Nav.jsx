@@ -33,6 +33,17 @@ export default function Nav() {
           {navLink("/ai-woordenlijst", "Woordenlijst")}
           {navLink("/over", "Over")}
           <Link
+            href="/cursus"
+            className="flex items-center gap-1.5 transition-colors hover:text-white"
+            style={{ color: "#9BA8B5" }}
+          >
+            Cursus
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none"
+              style={{ backgroundColor: "#C8813F22", color: "#C8813F", border: "1px solid #C8813F55" }}>
+              binnenkort
+            </span>
+          </Link>
+          <Link
             href="/#nieuwsbrief"
             className="text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
             style={{ backgroundColor: "#2C5A85" }}
@@ -67,6 +78,13 @@ export default function Nav() {
           <Link href="/ai-voor-beginners" onClick={() => setOpen(false)} className="hover:text-white">Beginners</Link>
           <Link href="/ai-woordenlijst" onClick={() => setOpen(false)} className="hover:text-white">Woordenlijst</Link>
           <Link href="/over" onClick={() => setOpen(false)} className="hover:text-white">Over</Link>
+          <Link href="/cursus" onClick={() => setOpen(false)} className="flex items-center gap-2 hover:text-white">
+            Cursus
+            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+              style={{ backgroundColor: "#C8813F22", color: "#C8813F", border: "1px solid #C8813F55" }}>
+              binnenkort
+            </span>
+          </Link>
           <Link href="/#nieuwsbrief" onClick={() => setOpen(false)} style={{ color: "#9BBCD8" }}>
             Nieuwsbrief
           </Link>
