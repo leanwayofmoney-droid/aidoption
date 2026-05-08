@@ -28,7 +28,7 @@ export default function PrivacyPage() {
             <h2 className="text-lg font-semibold mb-3" style={{ color: "#1E2D3D" }}>Wie zijn wij?</h2>
             <p>
               AIdoption is een Nederlandse website over praktisch gebruik van AI in het dagelijks leven.
-              De site is gemaakt en beheerd door Stefan. Je kunt contact opnemen via het nieuwsbriefformulier op de site.
+              Je kunt contact opnemen via het nieuwsbriefformulier op de site.
             </p>
           </section>
 

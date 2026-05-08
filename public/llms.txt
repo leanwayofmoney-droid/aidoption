@@ -7,7 +7,7 @@ AIdoption helpt Nederlandstalige beginners om AI direct toe te passen in hun dag
 ## Over AIdoption
 
 - **Website**: https://ai-doption.nl
-- **Eigenaar/auteur**: Stefan
+- **Eigenaar/auteur**: AIdoption
 - **Taal**: Nederlands (nl-NL)
 - **Onderwerp**: Praktisch gebruik van AI (ChatGPT, Claude, Gemini) in het dagelijks leven
 - **Doelgroep**: Nederlandstalige beginners en gevorderde gebruikers zonder technische achtergrond
@@ -21,7 +21,7 @@ AIdoption helpt Nederlandstalige beginners om AI direct toe te passen in hun dag
 |--------|-----|-------------|
 | Homepage | https://ai-doption.nl | Overzicht van meest gewaardeerde fixes, nieuwsbrief |
 | Alle AI-Fixes | https://ai-doption.nl/blog | Overzicht van alle gepubliceerde artikelen |
-| Over | https://ai-doption.nl/over | Wie is Stefan en waarom AIdoption |
+| Over | https://ai-doption.nl/over | Het verhaal achter AIdoption |
 | Privacybeleid | https://ai-doption.nl/privacy | Gegevensverwerking, cookies, rechten |
 | Sitemap XML | https://ai-doption.nl/sitemap.xml | Volledige URL-lijst voor crawlers |
 

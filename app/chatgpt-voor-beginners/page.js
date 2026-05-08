@@ -23,7 +23,7 @@ const jsonLd = {
   "@type": "Article",
   headline: "ChatGPT gebruiken voor beginners: zo begin je in 5 minuten",
   description: "Een gratis account aanmaken, je eerste bericht sturen en vijf dingen die je vandaag kunt doen met ChatGPT.",
-  author: { "@type": "Person", name: "Stefan" },
+  author: { "@type": "Organization", name: "AIdoption", url: BASE },
   publisher: { "@type": "Organization", name: "AIdoption", url: BASE },
   url: `${BASE}/chatgpt-voor-beginners`,
   inLanguage: "nl-NL",

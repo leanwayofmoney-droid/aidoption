@@ -164,9 +164,9 @@ export default async function AIFixPage({ params }) {
                     inLanguage: "nl-NL",
                     url: `${BASE}/blog/${post.slug}`,
                     author: {
-                      "@type": "Person",
-                      name: "Stefan",
-                      url: `${BASE}/over`,
+                      "@type": "Organization",
+                      name: "AIdoption",
+                      url: BASE,
                     },
                     publisher: {
                       "@type": "Organization",
@@ -184,7 +184,7 @@ export default async function AIFixPage({ params }) {
                     image: post.image,
                     datePublished: post.date,
                     inLanguage: "nl",
-                    author: { "@type": "Person", name: "Stefan", url: `${BASE}/over` },
+                    author: { "@type": "Organization", name: "AIdoption", url: BASE },
                     publisher: { "@type": "Organization", name: "AIdoption", url: BASE },
                     estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "0" },
                     totalTime: `PT${post.savingsPerTask}M`,

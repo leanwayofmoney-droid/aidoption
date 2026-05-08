@@ -5,23 +5,23 @@ const BASE = "https://ai-doption.nl";
 
 export const metadata = {
   title: "Over AIdoption | Praktische AI-hulp voor Nederlandstalige beginners",
-  description: "AIdoption is gemaakt door Stefan. Geen technische handleidingen, maar praktische AI-fixes die je vandaag nog kunt gebruiken. Leer wie er achter het project zit.",
+  description: "Geen technische handleidingen, maar praktische AI-fixes die je vandaag nog kunt gebruiken. Leer wat er achter AIdoption zit.",
   alternates: { canonical: `${BASE}/over` },
   openGraph: {
     type: "profile",
     url: `${BASE}/over`,
     title: "Over AIdoption | Wie zit er achter?",
-    description: "Stefan maakt AI toegankelijk voor mensen zonder technische achtergrond. Praktisch, eerlijk en direct toepasbaar.",
+    description: "AIdoption maakt AI toegankelijk voor mensen zonder technische achtergrond. Praktisch, eerlijk en direct toepasbaar.",
     images: [{ url: "/og-default.png", width: 1200, height: 630 }],
   },
 };
 
 const personSchema = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Stefan",
-  url: `${BASE}/over`,
-  worksFor: { "@type": "Organization", name: "AIdoption", url: BASE },
+  "@type": "Organization",
+  name: "AIdoption",
+  url: BASE,
+  description: "Praktische AI-fixes voor je dagelijkse leven. Toegankelijk voor iedereen, zonder technische kennis.",
   knowsAbout: ["Artificial Intelligence", "ChatGPT", "AI productiviteit", "Claude AI", "Gemini AI"],
 };
 
@@ -38,7 +38,7 @@ export default function OverPage() {
           </h1>
           <div className="space-y-4 text-base leading-relaxed" style={{ color: "#6C7B8B" }}>
             <p>
-              Ik ben Stefan. Ik werk fulltime en gebruik AI dagelijks om slimmer te werken, niet minder hard.
+              Ik werk fulltime en gebruik AI dagelijks om slimmer te werken, niet minder hard.
               AIdoption is mijn manier om te delen wat ik geleerd heb: welke tools werken, hoe je ze inzet
               en wat je er concreet mee bereikt.
             </p>
@@ -113,10 +113,7 @@ export default function OverPage() {
         <section className="py-10" style={{ borderTop: "1px solid #E2E6EA" }}>
           <h2 className="text-xl font-semibold mb-4" style={{ color: "#1E2D3D" }}>Contact</h2>
           <p className="text-sm leading-relaxed mb-5" style={{ color: "#6C7B8B" }}>
-            Vragen, opmerkingen of een samenwerking? Stuur een mail naar{" "}
-            <a href="mailto:stefanwolfs@gmail.com" className="hover:underline" style={{ color: "#2C5A85" }}>
-              stefanwolfs@gmail.com
-            </a>
+            Vragen, opmerkingen of een samenwerking? Schrijf je in voor de nieuwsbrief of gebruik het formulier hieronder.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full transition-all hover:-translate-y-0.5"

@@ -19,7 +19,7 @@ export const metadata = {
     "AI voor beginners", "AI dagelijks leven", "AI tijdsbesparing",
     "AI prompts Nederlands", "kunstmatige intelligentie tips",
   ],
-  authors: [{ name: "Stefan", url: BASE }],
+  authors: [{ name: "AIdoption", url: BASE }],
   creator: "AIdoption",
   publisher: "AIdoption",
   openGraph: {
@@ -100,7 +100,7 @@ export default function RootLayout({ children }) {
                   inLanguage: "nl-NL",
                   founder: {
                     "@type": "Person",
-                    name: "Stefan",
+                    name: "AIdoption",
                     url: `${BASE}/over`,
                   },
                   sameAs: [

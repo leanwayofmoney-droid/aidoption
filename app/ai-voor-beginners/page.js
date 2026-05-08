@@ -23,7 +23,7 @@ const jsonLd = {
   "@type": "Article",
   headline: "AI voor beginners: wat het is en hoe je vandaag begint",
   description: "Wat is kunstmatige intelligentie, welke tools zijn er en hoe gebruik je AI in je dagelijks leven?",
-  author: { "@type": "Person", name: "Stefan" },
+  author: { "@type": "Organization", name: "AIdoption", url: BASE },
   publisher: { "@type": "Organization", name: "AIdoption", url: BASE },
   url: `${BASE}/ai-voor-beginners`,
   inLanguage: "nl-NL",

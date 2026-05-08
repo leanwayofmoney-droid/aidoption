@@ -23,7 +23,7 @@ const jsonLd = {
   "@type": "HowTo",
   name: "AI-prompts schrijven: zo krijg je betere antwoorden",
   description: "Leer hoe je effectieve prompts schrijft voor AI-tools zoals ChatGPT, Claude en Gemini.",
-  author: { "@type": "Person", name: "Stefan" },
+  author: { "@type": "Organization", name: "AIdoption", url: BASE },
   publisher: { "@type": "Organization", name: "AIdoption", url: BASE },
   url: `${BASE}/ai-prompts-schrijven`,
   inLanguage: "nl-NL",
