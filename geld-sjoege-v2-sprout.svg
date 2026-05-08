@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 110" width="440" height="110">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="440" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06100A"/>
+      <stop offset="100%" stop-color="#091A10"/>
+    </linearGradient>
+    <linearGradient id="cyan2" x1="0" y1="90" x2="0" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <linearGradient id="green2" x1="0" y1="80" x2="0" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#6EE7B7"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="440" height="110" rx="14" fill="url(#bg2)"/>
+  <rect width="440" height="1" rx="0.5" fill="white" opacity="0.03"/>
+
+  <!-- Circle ring -->
+  <circle cx="55" cy="55" r="42" fill="#0B1F10" opacity="0.7"/>
+  <circle cx="55" cy="55" r="42" fill="none" stroke="url(#cyan2)" stroke-width="1.8" opacity="0.6"/>
+
+  <!-- Coin/soil base -->
+  <ellipse cx="55" cy="86" rx="24" ry="9" fill="#0D2040"/>
+  <ellipse cx="55" cy="86" rx="24" ry="9" fill="none" stroke="url(#cyan2)" stroke-width="2"/>
+  <!-- Coin lines -->
+  <line x1="42" y1="86" x2="68" y2="86" stroke="url(#cyan2)" stroke-width="0.8" opacity="0.35"/>
+
+  <!-- Main stem -->
+  <line x1="55" y1="77" x2="55" y2="36" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Left leaf -->
+  <path d="M 55,62 C 38,56 24,38 34,26 C 44,14 54,44 55,62 Z" fill="url(#green2)" opacity="0.85"/>
+  <line x1="55" y1="62" x2="36" y2="29" stroke="#047857" stroke-width="1.1" opacity="0.5"/>
+
+  <!-- Right leaf (higher) -->
+  <path d="M 55,50 C 72,44 86,26 76,14 C 66,2 56,32 55,50 Z" fill="url(#green2)"/>
+  <line x1="55" y1="50" x2="74" y2="17" stroke="#047857" stroke-width="1.1" opacity="0.5"/>
+
+  <!-- Bud tip -->
+  <ellipse cx="55" cy="33" rx="5.5" ry="8" fill="#34D399"/>
+  <ellipse cx="55" cy="28" rx="3.5" ry="5.5" fill="#A7F3D0"/>
+
+  <!-- Text -->
+  <text x="114" y="46" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="31" fill="#FFFFFF">Geld</text>
+  <rect x="114" y="51" width="40" height="2" rx="1" fill="#38BDF8" opacity="0.7"/>
+  <text x="115" y="74" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-weight="300" font-size="22" fill="url(#green2)" letter-spacing="5">SJOEGE</text>
+  <text x="115" y="93" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-weight="400" font-size="9.5" fill="#38BDF8" letter-spacing="2.5" opacity="0.55">SLIM &amp; DUURZAAM BESPAREN</text>
+</svg>
