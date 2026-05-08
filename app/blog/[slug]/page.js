@@ -143,21 +143,26 @@ export default async function AIFixPage({ params }) {
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@graph": [
+                  // 1. Breadcrumb
                   {
                     "@type": "BreadcrumbList",
                     "itemListElement": [
-                      { "@type": "ListItem", position: 1, name: "Home",      item: `${BASE}` },
-                      { "@type": "ListItem", position: 2, name: "AI-Fixes",  item: `${BASE}/blog` },
-                      { "@type": "ListItem", position: 3, name: post.title,  item: `${BASE}/blog/${post.slug}` },
+                      { "@type": "ListItem", position: 1, name: "Home",     item: `${BASE}` },
+                      { "@type": "ListItem", position: 2, name: "AI-Fixes", item: `${BASE}/blog` },
+                      { "@type": "ListItem", position: 3, name: post.title, item: `${BASE}/blog/${post.slug}` },
                     ],
                   },
+                  // 2. Article — voor Google Discover, News en E-E-A-T
                   {
-                    "@type": "HowTo",
-                    name: post.title,
+                    "@type": "Article",
+                    "@id": `${BASE}/blog/${post.slug}#article`,
+                    headline: post.title,
                     description: post.excerpt,
                     image: post.image,
                     datePublished: post.date,
-                    inLanguage: "nl",
+                    dateModified: post.date,
+                    inLanguage: "nl-NL",
+                    url: `${BASE}/blog/${post.slug}`,
                     author: {
                       "@type": "Person",
                       name: "Stefan",
@@ -167,28 +172,48 @@ export default async function AIFixPage({ params }) {
                       "@type": "Organization",
                       name: "AIdoption",
                       url: BASE,
+                      logo: { "@type": "ImageObject", url: `${BASE}/og-default.png` },
                     },
+                    mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE}/blog/${post.slug}` },
+                  },
+                  // 3. HowTo — met echte stappen uit Notion
+                  {
+                    "@type": "HowTo",
+                    name: post.title,
+                    description: post.excerpt,
+                    image: post.image,
+                    datePublished: post.date,
+                    inLanguage: "nl",
+                    author: { "@type": "Person", name: "Stefan", url: `${BASE}/over` },
+                    publisher: { "@type": "Organization", name: "AIdoption", url: BASE },
                     estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "0" },
                     totalTime: `PT${post.savingsPerTask}M`,
                     tool: [{ "@type": "HowToTool", name: post.tool }],
-                    step: [
-                      {
-                        "@type": "HowToStep",
-                        name: "Begrijp de aanpak",
-                        text: post.persoonlijkeMissie?.replace(/\*\*/g, ""),
-                      },
-                      {
-                        "@type": "HowToStep",
-                        name: "De transformatie",
-                        text: post.transformatie?.replace(/\*\*/g, ""),
-                      },
-                      {
-                        "@type": "HowToStep",
-                        name: "De AI-logica",
-                        text: post.strategischeLogica?.replace(/\*\*/g, ""),
-                      },
-                    ],
+                    step: stappen.length > 0
+                      ? stappen.map((stap, i) => ({
+                          "@type": "HowToStep",
+                          position: i + 1,
+                          name: stap.replace(/^Stap \d+[.:]\s*/i, "").split(".")[0].trim(),
+                          text: stap.replace(/\*\*/g, ""),
+                        }))
+                      : [
+                          { "@type": "HowToStep", position: 1, name: "Begrijp de aanpak",  text: post.persoonlijkeMissie?.replace(/\*\*/g, "") },
+                          { "@type": "HowToStep", position: 2, name: "De transformatie",   text: post.transformatie?.replace(/\*\*/g, "") },
+                          { "@type": "HowToStep", position: 3, name: "Pas het toe",        text: post.strategischeLogica?.replace(/\*\*/g, "") },
+                        ],
                   },
+                  // 4. FAQPage — alleen als er FAQ-items zijn (rich snippets in Google)
+                  ...(faqItems.length > 0 ? [{
+                    "@type": "FAQPage",
+                    mainEntity: faqItems.map((item) => ({
+                      "@type": "Question",
+                      name: item.q,
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: item.a,
+                      },
+                    })),
+                  }] : []),
                 ],
               }),
             }}

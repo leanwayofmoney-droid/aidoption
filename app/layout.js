@@ -84,14 +84,47 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "AIdoption",
-              url: BASE,
-              logo: `${BASE}/og-default.png`,
-              description: "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd. Geen technische kennis nodig.",
-              inLanguage: "nl-NL",
-              founder: { "@type": "Person", name: "Stefan" },
-              sameAs: [],
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${BASE}/#organization`,
+                  name: "AIdoption",
+                  url: BASE,
+                  logo: {
+                    "@type": "ImageObject",
+                    url: `${BASE}/og-default.png`,
+                    width: 1200,
+                    height: 630,
+                  },
+                  description: "Praktische AI-fixes voor je dagelijkse leven. Kopieer de prompt en bespaar direct tijd. Geen technische kennis nodig.",
+                  inLanguage: "nl-NL",
+                  founder: {
+                    "@type": "Person",
+                    name: "Stefan",
+                    url: `${BASE}/over`,
+                  },
+                  sameAs: [
+                    "https://ai-doption.nl",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${BASE}/#website`,
+                  url: BASE,
+                  name: "AIdoption",
+                  description: "Praktische AI-fixes voor je dagelijkse leven",
+                  inLanguage: "nl-NL",
+                  publisher: { "@id": `${BASE}/#organization` },
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: {
+                      "@type": "EntryPoint",
+                      urlTemplate: `${BASE}/blog?q={search_term_string}`,
+                    },
+                    "query-input": "required name=search_term_string",
+                  },
+                },
+              ],
             }),
           }}
         />

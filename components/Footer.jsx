@@ -31,8 +31,11 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-6 py-4 text-xs" style={{ color: "#4E5D6C" }}>
-          © {new Date().getFullYear()} AIdoption. Alle rechten voorbehouden.
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4 flex-wrap text-xs" style={{ color: "#4E5D6C" }}>
+          <span>© {new Date().getFullYear()} AIdoption. Alle rechten voorbehouden.</span>
+          <Link href="/privacy" className="hover:text-white transition-colors" style={{ color: "#4E5D6C" }}>
+            Privacybeleid
+          </Link>
         </div>
       </div>
     </footer>

@@ -5,14 +5,19 @@ const BASE = "https://ai-doption.nl";
 export default async function sitemap() {
   const posts = await getPosts();
 
+  // lastModified = datum van meest recente artikel (= site is bijgewerkt)
+  const latestPost = posts[0];
+  const latestDate = latestPost?.date ? new Date(latestPost.date) : new Date();
+
   const staticPages = [
-    { url: BASE,                              lastModified: "2026-04-23", changeFrequency: "weekly",  priority: 1.0 },
-    { url: `${BASE}/blog`,                    lastModified: "2026-04-23", changeFrequency: "daily",   priority: 0.9 },
-    { url: `${BASE}/ai-voor-beginners`,       lastModified: "2026-04-20", changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/chatgpt-voor-beginners`,  lastModified: "2026-04-20", changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/ai-prompts-schrijven`,    lastModified: "2026-04-20", changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/ai-woordenlijst`,         lastModified: "2026-04-20", changeFrequency: "monthly", priority: 0.80 },
-    { url: `${BASE}/over`,                    lastModified: "2026-04-23", changeFrequency: "monthly", priority: 0.50 },
+    { url: BASE,                              lastModified: latestDate,   changeFrequency: "weekly",  priority: 1.0 },
+    { url: `${BASE}/blog`,                    lastModified: latestDate,   changeFrequency: "daily",   priority: 0.9 },
+    { url: `${BASE}/ai-voor-beginners`,       lastModified: latestDate,   changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/chatgpt-voor-beginners`,  lastModified: latestDate,   changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/ai-prompts-schrijven`,    lastModified: latestDate,   changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/ai-woordenlijst`,         lastModified: latestDate,   changeFrequency: "monthly", priority: 0.80 },
+    { url: `${BASE}/over`,                    lastModified: latestDate,   changeFrequency: "monthly", priority: 0.50 },
+    { url: `${BASE}/privacy`,                 lastModified: "2026-05-01", changeFrequency: "yearly",  priority: 0.30 },
   ];
 
   const postPages = posts.map((post) => ({
