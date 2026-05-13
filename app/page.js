@@ -7,7 +7,7 @@ import HeroTop3 from "../components/HeroTop3";
 import { getPosts } from "../lib/notion";
 import { getTopFixes } from "../lib/ratings";
 
-export const revalidate = 1800; // herlaad Notion-data elke 30 min
+export const revalidate = 60; // herlaad Notion-data elke minuut
 
 const CATEGORIES = [
   { label: "Communicatie",        icon: "💬", color: "#2C5A85" },

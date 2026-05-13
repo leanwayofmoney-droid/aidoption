@@ -4,7 +4,7 @@ import FilteredPosts from "../../components/FilteredPosts";
 import BlogTopFixes from "../../components/BlogTopFixes";
 import { getPosts } from "../../lib/notion";
 
-export const revalidate = 3600; // herlaad Notion-data elk uur
+export const revalidate = 60; // herlaad Notion-data elke minuut
 
 export const metadata = {
   title: "AI-Tips voor dagelijkse taken | Praktische ChatGPT-fixes | AIdoption",
